@@ -29,6 +29,7 @@
   * [WEB](problemsolver/tech/web/README.md)
     * [HTTP 통신, 그리고 나의 경험](problemsolver/tech/web/http/README.md)
       * [HTTP 개요](problemsolver/tech/web/http/http.md)
+      * [HTTP 통신, OpenAPI Generator로 추상화하기](problemsolver/tech/web/http/http-openapi-generator.md)
     * [RESTful API, 그리고 나의 경험](problemsolver/tech/web/restful-api/README.md)
       * [What is REST?](problemsolver/tech/web/restful-api/what-is-rest.md)
       * [REST Quick Tips](problemsolver/tech/web/restful-api/rest-quick-tips.md)
