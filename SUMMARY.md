@@ -19,6 +19,7 @@
 ## 🧑💻 Tech
 
 * [WEB](problemsolver/tech/web/README.md)
+  * [웹 안에 또 다른 웹, iframe을 다루며 겪은 문제](tech/web/iframe.md)
   * [HTTP 통신, 그리고 나의 경험](problemsolver/tech/web/http/README.md)
     * [HTTP 개요](problemsolver/tech/web/http/http.md)
     * [HTTP 통신, OpenAPI Generator로 추상화하기](problemsolver/tech/web/http/http-openapi-generator.md)
