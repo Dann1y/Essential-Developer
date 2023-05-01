@@ -1,7 +1,7 @@
 # Table of contents
 
 * [📈 Who I am](README.md)
-* [✍ About Essential Blog](<README (1).md>)
+* [✍ About Essential Blog](about.md)
 
 ## ⤴ 성장 모먼트 <a href="#growthmoment" id="growthmoment"></a>
 
