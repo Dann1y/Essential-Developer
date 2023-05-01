@@ -12,10 +12,6 @@
 * [기술 혁신 속에서 나는 어떻게 해야할까?](growthmoment/undefined-1.md)
 * [멍청한 질문이라도 던져야한다](growthmoment/undefined-2.md)
 
-## 🏦 Business
-
-* [트위치의 VOD 서비스 종료](problemsolver/business/vod.md)
-
 ## 🧑💻 Tech
 
 * [WEB](problemsolver/tech/web/README.md)
@@ -25,10 +21,7 @@
     * [HTTP 통신, OpenAPI Generator로 추상화하기](problemsolver/tech/web/http/http-openapi-generator.md)
   * [RESTful API, 그리고 나의 경험](problemsolver/tech/web/restful-api/README.md)
     * [What is REST?](problemsolver/tech/web/restful-api/what-is-rest.md)
-    * [REST Quick Tips](problemsolver/tech/web/restful-api/rest-quick-tips.md)
 * [Frontend](problemsolver/tech/frontend/README.md)
-  * [선언적인 코드와 함수형 프로그래밍](problemsolver/tech/frontend/undefined.md)
-  * [Monorepo를 사용하며 겪은 문제들](problemsolver/tech/frontend/monorepo.md)
   * [Form은 무엇이고 난 어떻게 사용했는가](problemsolver/tech/frontend/form/README.md)
     * [Web에서의 Form이란?](problemsolver/tech/frontend/form/web-form.md)
     * [Form을 관리하고 최적화한 방법](problemsolver/tech/frontend/form/form.md)
@@ -46,7 +39,3 @@
 * [2023](memoir/2023/README.md)
   * [1분기](memoir/2023/1.md)
   * [2023.04.](memoir/2023/2023.04..md)
-
-## 📖 Book Review
-
-* [안티프래질](book-review/undefined.md)
