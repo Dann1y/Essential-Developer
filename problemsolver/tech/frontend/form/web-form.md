@@ -76,7 +76,7 @@ label을 input과 연관시키는 이유가 무엇일까요?
 
 Validation을 수행할 수 있는 방법은 built-in form validation, javascript로 총 2가지가 있습니다.
 
-#### 1. Built-in form validation
+### I. Built-in form validation
 
 HTML의 form validation 기능을 활용하는 것입니다.
 
@@ -98,13 +98,13 @@ HTML validation의 성능은 JS보다 좋지만, 커스텀이 JS를 활용하는
 
 
 
-#### 2. Javascript
+### II. Javascript
 
 HTML의 validation 코드 자체가 Javascript로 작성되었기 때문에 JS를 사용해 커스텀이 가능하지만 작성해야하는 양이 늘어날 수 있습니다. 따라서 라이브러리를 사용해 커스텀하는 것이 도움이 됩니다.
 
 
 
-#### + controlled vs uncontrolled
+### + controlled vs uncontrolled
 
 validation을 통해 input value를 검증할 때의 시점에 따라 제어 혹은 비제어 컴포넌트를 사용할지 정할 수 있습니다.
 
