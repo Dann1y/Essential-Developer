@@ -2,7 +2,7 @@
 description: 2023.04.28.
 ---
 
-# 웹 안에 또 다른 웹, iframe을 다루며 겪은 문제
+# 웹 안에 또 다른 웹, iframe과 실시간 소통을 하며 겪은 문제
 
 Iframe과 통신하며 겪은 문제를 풀어나가며 겪은 고민과 해결 과정을 공유하겠습니다.
 
@@ -19,7 +19,7 @@ Iframe과 통신하며 겪은 문제를 풀어나가며 겪은 고민과 해결 
 
 ### 1. iframe이 불러와져야 뭐라도 하지..
 
-<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption><p><a href="https://stackoverflow.com/questions/66463781/how-do-you-stop-an-iframe-from-saying-site-refused-to-connect">https://stackoverflow.com/questions/66463781/how-do-you-stop-an-iframe-from-saying-site-refused-to-connect</a></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1).png" alt=""><figcaption><p><a href="https://stackoverflow.com/questions/66463781/how-do-you-stop-an-iframe-from-saying-site-refused-to-connect">https://stackoverflow.com/questions/66463781/how-do-you-stop-an-iframe-from-saying-site-refused-to-connect</a></p></figcaption></figure>
 
 iframe을 불러올 때 iframe의 도메인이 연결을 거부하는 상황이 있었습니다.
 
@@ -47,7 +47,7 @@ X-Frame-Options가 sameorigin이었음에도 위 문제가 발생하여 iframe�
 
 ### 2. 실시간으로 iframe과 통신을 하려면 어떻게 해야할까?
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption><p>Twip Dashboard > 채팅창 위젯 오버레이</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption><p>Twip Dashboard > 채팅창 위젯 오버레이</p></figcaption></figure>
 
 개발자 도구로 열어서 확인이 가능하겠지만 대시보드에서 오버레이 설정하고 실시간으로 채팅창의 스타일을 확인하기 위해서는 iframe과 소통이 필요합니다. 실시간으로 채팅을 띄우는 것이 그리 어려운 일은 아니지만 iframe을 통해 띄워야한다면 이야기가 달라집니다.
 
