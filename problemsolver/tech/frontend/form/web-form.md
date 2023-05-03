@@ -116,7 +116,7 @@ validation을 통해 input value를 검증할 때의 시점에 따라 제어 혹
 
 Form의 data가 client-side validation을 마쳤다면, 폼을 submit 하기 위한 준비가 되었다는 뜻입니다.
 
-<figure><img src="../../../../.gitbook/assets/image (3).png" alt=""><figcaption><p><a href="https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_and_retrieving_form_data#clientserver_architecture">https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_and_retrieving_form_data#clientserver_architecture</a></p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (3) (1).png" alt=""><figcaption><p><a href="https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_and_retrieving_form_data#clientserver_architecture">https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_and_retrieving_form_data#clientserver_architecture</a></p></figcaption></figure>
 
 data를 서버에 HTTP 프로토콜을 사용하여 보낼 때 HTML form은 정말 **유저 친화적**입니다.
 

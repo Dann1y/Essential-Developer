@@ -22,7 +22,7 @@ Input이 많아지는만큼 Form의 코드 수도 증가합니다. 증가한 코
 
 
 
-<figure><img src="../../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 이 HTML 위젯은 label과 input, 크게 2가지로 볼 수 있습니다.
 
@@ -124,14 +124,23 @@ type SetBlogConfigKey = keyof SetBlogConfigRequestBody;
 export const validationSchema: ZodObject<
   Record<SetBlogConfigKey, z.ZodTypeAny>
 > = z.object({
-  endcreditsName: z.string(),
-  layout: z.string(),
-  textAlign: z.string(),
-  creditSpeed: z.number(),
+  title: z.string(),
+  description: z.string(),
+  id: z.number()
 });
 
 ```
 {% endcode %}
+
+4번: POST 요청을 보낼 때의 body 값 = form에서 보내야할 data이기 때문에 [**OpenAPI Generator를 사용**](https://docs.essential-dev.blog/tech/web/http/http-openapi-generator)하여 나온 interface의 key 값만 가져와 validationSchema를 선언할 때 발생하는 오타, 빠진 부분을 사전에 파악하여 휴먼에러를 줄일 수 있습니다.
+
+zod 사용법은 불친절한 공식문서를 참고하시게 될텐데 가장 많이 쓰이는 3가지만 공유드리겠습니다.
+
+* string, number처럼 기본적인 type을 validation합니다.
+* refine - min, max처럼 간단하지 않은 조건에 대해서 value로 커스텀이 필요하다면 사용합니다.
+* superRefine - 여러 input에 의존하는 validation과 함께 context에 접근하여 각 상황마다 `ctx.addIssue` 로 에러를 지정할 때 사용합니다.
+
+
 
 {% code title="BlogConfigSetupForm" lineNumbers="true" %}
 ```tsx
@@ -155,6 +164,11 @@ export const BlogConfigSetupForm = () => {
   const onSubmit = async (values: BlogConfigFormValueType) => {
     try {
       // 비동기 fetching codes
+      const result = await trigger(values);
+      
+      if(result.status === 200) {
+        //success handling
+      }
     } catch (e) {
       // error handling
     }
@@ -175,7 +189,7 @@ export const BlogConfigSetupForm = () => {
           <Controller
             name="title"
             control={control}
-            render={({ field }) => (
+            render={({ field }) => ( // field: { name, onBlur, onChange, ref, value }
               <InputFormItem
                 {...field}
                 label="제목"
@@ -197,17 +211,53 @@ export const BlogConfigSetupForm = () => {
 
 
 
-1번: POST 요청을 보낼 때의 body 값 = form에서 보내야할 data이기 때문에 [**OpenAPI Generator를 사용**](https://docs.essential-dev.blog/tech/web/http/http-openapi-generator)하여 나온 interface를 FormValueType으로 선언합니다.
+* **1번**: POST 요청을 보낼 때의 body 값 = form에서 보내야할 data이기 때문에 [**OpenAPI Generator를 사용**](https://docs.essential-dev.blog/tech/web/http/http-openapi-generator)하여 나온 interface를 FormValueType으로 선언합니다.\
 
-7번: react-hook-form의 useForm으로 formMethods를 선언합니다. 앞서 선언했던 FormValueType을 useForm에 generic으로 type을 선언해줍니다.
+* **7번**: react-hook-form의 useForm으로 formMethods를 선언합니다. 앞서 선언했던 FormValueType을 useForm에 generic으로 type을 선언해줍니다.\
+  \
+  앞으로 useForm으로부터 나온 control로 input들을 관리하게 될텐데 name을 입력하고 value를 관리할 때 사전에 선언된 type이 있기 때문에 **code를 작성하는 단계에서 나오는 type 에러를 사전에 거를 수 있게 됩니다.**\
 
-앞으로 useForm으로부터 나온 control로 input들을 관리하게 될텐데 name을 입력하고 value를 관리할 때 사전에 선언된 type이 있기 때문에 **code를 작성하는 단계에서 나오는 type 에러를 사전에 거를 수 있게 됩니다.**
+* **26번**: 뜬금없는 useEffect 구문은 컴포넌트가 마운트되는 시점에 **useForm의 defaultValues로는 기본 값을 설정할 수 없어** 마운트된 이후에 받아온 data로 각 input에 value를 설정하는 것입니다.\
+  \
+  이러한 useEffect 구문을 작성하고 싶지 않다면 SSR을 통해 server의 request time에 form의 input에 들어갈 data를 pre-fetch해와서 useForm의 defaultValues로 설정하는 방법이 있습니다.\
 
-26번: 뜬금없는 useEffect 구문은 컴포넌트가 마운트되는 시점에 **useForm의 defaultValues로는 기본 값을 설정할 수 없어** 마운트된 이후에 받아온 data로 각 input에 value를 설정하는 것입니다.
-
-이러한 useEffect 구문을 작성하고 싶지 않다면 SSR을 통해 server의 request time에 form의 input에 들어갈 data를 pre-fetch해와서 useForm의 defaultValues로 설정하는 방법이 있습니다.
-
-
-
+*   **38번**: react-hook-form의 Controller를 활용하여 Input의 value를 관리합니다.\
+    \
+    가장 좋은 점은 custom이 필요하지 않은 경우 `{...fields}`로 기본 값을 넘겨만 주어도 onChange, value 관리가 되기 때문에 사용할 때 편했습니다.\
+    \
 
 
+    <figure><img src="../../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+    [FormProvider](https://react-hook-form.com/api/usecontroller/controller/)사용하는 경우 control은 optional이지만 앞서 말씀드린 Controller의 name의 type을 관리하기 위하여 저는 control을 사용하였습니다.\
+    예를 들어 controller의 name이 `title` 인데 만약 `titl` 로 오타가 난 경우 `titl is not assignable to type (FormValueType)` 와 같이 에러를 마주하여 휴먼 에러를 줄일 수 있습니다.
+
+
+
+## 3. Submit
+
+위 코드처럼 별도의 onSubmit 비동기 함수를 작성하여 form의 submit을 handling합니다.
+
+이 때 POST하는 HTTP 요청에 대해서는 [**useSWRMutation을 통해 과정을 추상화**](https://docs.essential-dev.blog/tech/frontend/swr/useswrmutation-mutate)하여 Mutation에만 관심사를 갖도록 했습니다.
+
+
+
+경험했던 문제는 **DOM 구조를 기준으로 form 내에 submit button이 없는 경우**에 버튼을 눌러도 form의 submit이 동작을 하지 않는다는 것인데, 이 때 **form에 ref를 할당**하고 form 밖의 버튼을 클릭하면 `submit` 이라는 event를 dispatch 시켜서 onSubmit event를 실행하도록한 경험이 있습니다.
+
+
+
+## 마무리
+
+Next + typescript 환경에서
+
+* 컴포넌트 추상화를 통해 **중복을 제거하여 사용의 편의성을 증가**시켰고
+* react-hook-form + zod를 통해 **input value management, validation, type**을 효율적으로 관리하였으며
+* **OpenAPI Generator와 useSWR hook**으로 data를 GET해서 form의 기본 값을 관리하고 Form을 Submit(POST or PUT)하는 과정을 추상화하여 **코드 복잡도를 줄이고 유지보수**하기 쉽도록 하였습니다.
+
+Form을 구축하고 관리하는 과정에 대해 저의 경험을 바탕으로 겪었던 문제들, 해결방법까지 서술해보았습니다.
+
+
+
+글을 읽어주셔서 감사합니다!
+
+좋은 하루 되세요.\

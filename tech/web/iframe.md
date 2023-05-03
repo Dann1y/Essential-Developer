@@ -47,7 +47,7 @@ X-Frame-Options가 sameorigin이었음에도 위 문제가 발생하여 iframe�
 
 ### 2. 실시간으로 iframe과 통신을 하려면 어떻게 해야할까?
 
-<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption><p>Twip Dashboard > 채팅창 위젯 오버레이</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption><p>Twip Dashboard > 채팅창 위젯 오버레이</p></figcaption></figure>
 
 개발자 도구로 열어서 확인이 가능하겠지만 대시보드에서 오버레이 설정하고 실시간으로 채팅창의 스타일을 확인하기 위해서는 iframe과 소통이 필요합니다. 실시간으로 채팅을 띄우는 것이 그리 어려운 일은 아니지만 iframe을 통해 띄워야한다면 이야기가 달라집니다.
 

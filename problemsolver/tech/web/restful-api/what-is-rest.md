@@ -47,7 +47,7 @@ Client와 Server사이에 동일한 형태의 Interface로 아키텍쳐를 간�
 
 ### Stateless
 
-<figure><img src="../../../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption><p><a href="https://restapilinks.com/stateless/">https://restapilinks.com/stateless/</a></p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption><p><a href="https://restapilinks.com/stateless/">https://restapilinks.com/stateless/</a></p></figcaption></figure>
 
 **REST - **<mark style="color:red;">**RE**</mark>**presentational **<mark style="color:red;">**S**</mark>**tate **<mark style="color:red;">**T**</mark>**ransfer**
 
