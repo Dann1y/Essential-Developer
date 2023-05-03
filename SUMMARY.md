@@ -22,7 +22,7 @@
   * [RESTful API, 그리고 나의 경험](problemsolver/tech/web/restful-api/README.md)
     * [What is REST?](problemsolver/tech/web/restful-api/what-is-rest.md)
 * [Frontend](problemsolver/tech/frontend/README.md)
-  * [Form은 무엇이고 난 어떻게 사용했는가](problemsolver/tech/frontend/form/README.md)
+  * [Form의 개념, 내가 사용한 방법](problemsolver/tech/frontend/form/README.md)
     * [Web에서의 Form이란?](problemsolver/tech/frontend/form/web-form.md)
     * [Form을 관리하고 최적화한 방법](problemsolver/tech/frontend/form/form.md)
   * [SWR 시리즈](problemsolver/tech/frontend/swr/README.md)
