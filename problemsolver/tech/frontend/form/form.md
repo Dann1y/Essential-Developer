@@ -114,6 +114,25 @@ Input의 value와 관련된 관리(onChange, value, name, ref ..etc)는 react-ho
 
 블로그 설정을 변경하는 코드를 예시로 작성해보겠습니다.
 
+{% code title="validationSchema.ts" lineNumbers="true" %}
+```typescript
+import { SetEndcreditsWidgetRequestBody } from '@twip-fe/shared'
+import { ZodObject, z } from 'zod';
+
+type SetBlogConfigKey = keyof SetBlogConfigRequestBody;
+
+export const validationSchema: ZodObject<
+  Record<SetBlogConfigKey, z.ZodTypeAny>
+> = z.object({
+  endcreditsName: z.string(),
+  layout: z.string(),
+  textAlign: z.string(),
+  creditSpeed: z.number(),
+});
+
+```
+{% endcode %}
+
 {% code title="BlogConfigSetupForm" lineNumbers="true" %}
 ```tsx
 export type BlogConfigFormValueType = SetBlogConfigRequestBody;
@@ -180,4 +199,15 @@ export const BlogConfigSetupForm = () => {
 
 1번: POST 요청을 보낼 때의 body 값 = form에서 보내야할 data이기 때문에 [**OpenAPI Generator를 사용**](https://docs.essential-dev.blog/tech/web/http/http-openapi-generator)하여 나온 interface를 FormValueType으로 선언합니다.
 
-7번: react-hook-form의 useForm으로 formMethods를 선언합니다. 앞서 선언했던 FormValueType을 useForm에 generic으로 type을 선언해줍니다. 앞으로 useForm으로부터 나온 control로 input들을 관리하게 될텐데 이 때 정해진 type의&#x20;
+7번: react-hook-form의 useForm으로 formMethods를 선언합니다. 앞서 선언했던 FormValueType을 useForm에 generic으로 type을 선언해줍니다.
+
+앞으로 useForm으로부터 나온 control로 input들을 관리하게 될텐데 name을 입력하고 value를 관리할 때 사전에 선언된 type이 있기 때문에 **code를 작성하는 단계에서 나오는 type 에러를 사전에 거를 수 있게 됩니다.**
+
+26번: 뜬금없는 useEffect 구문은 컴포넌트가 마운트되는 시점에 **useForm의 defaultValues로는 기본 값을 설정할 수 없어** 마운트된 이후에 받아온 data로 각 input에 value를 설정하는 것입니다.
+
+이러한 useEffect 구문을 작성하고 싶지 않다면 SSR을 통해 server의 request time에 form의 input에 들어갈 data를 pre-fetch해와서 useForm의 defaultValues로 설정하는 방법이 있습니다.
+
+
+
+
+
