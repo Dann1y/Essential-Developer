@@ -22,7 +22,7 @@ Input이 많아지는만큼 Form의 코드 수도 증가합니다. 증가한 코
 
 
 
-<figure><img src="../../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
 이 HTML 위젯은 label과 input, 크게 2가지로 볼 수 있습니다.
 
