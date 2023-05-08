@@ -27,8 +27,6 @@ Pinterest는 많은 양의 data(사진, 태그, 계정 정보 등)을 스크롤�
 
 ## 문제 해결 방법
 
-{% embed url="https://swr.vercel.app/ko/docs/pagination#useswrinfinite" %}
-
 Table(데이터 표)형식에서는 api를 요청할 때 query에 page를 함께 보내서 어떤 page를 fetch할건지 state로 조절이 가능하겠지만, 위와 같은 scroll 형식의 data에서는 이를 적용하기에는 부적합합니다.
 
 
@@ -75,6 +73,82 @@ useSWRInfinite의 return값은 useSWR + 가져올 page의 수인 `size`와 page�
 
 ## 적용 방법
 
+로직을 설명할 수 있는 핵심적인 몇 가지의 예시 코드를 첨부해보겠습니다.
+
+{% code title="IntersectionObserver" lineNumbers="true" %}
+```tsx
+const [ref, setRef] = useState<HTMLElement | null | undefined>(null);
+
+  const onIntersect: IntersectionObserverCallback = useCallback(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        setSize((prev) => prev + 1);
+      }
+    },
+    [setSize],
+  );
+
+  useEffect(() => {
+    if (!ref) return;
+    const observer = new IntersectionObserver(onIntersect, {
+      threshold: 1,
+    });
+    
+    observer.observe(ref);
+    return () => observer && observer.disconnect();
+  }, [ref, onIntersect]);
+
+  return <div ref={setRef}></div>;
+```
+{% endcode %}
+
+google + chatGPT로 쉽게 찾을 수 있는 React 코드입니다.
+
+ref가 선언되어있는 element의 모양이 어떻든 그 element를 전부 감싸는 최소 크기의 직사각형을 기준으로 Intersection을 판별합니다.
+
+entries의 첫 번째 요소를 entry로 선언하고 `entry.isIntersecting` 일 때 useSWRInfinite의 setSize로 size를 1 증가 시킴으로써 다음 data를 받아옵니다.
+
+비동기적으로 동작하는 useEffect 구문 안에서 observer 인스턴스를 선언하고 `observe(ref)`로 관찰할 target 요소를 지정합니다.
+
+
+
+{% code title="useGetInfiniteBlogPost" lineNumbers="true" %}
+```tsx
+// getKey 함수 정의
+const getKey = (pageIndex, previousPageData) => {
+  const newPageIndex = pageIndex + 1;
+  if (previousPageData && !previousPageData.items.length) {
+    return null;
+  }
+  return `/api/blog?page=${newPageIndex}`;
+};
+
+// useSWRInfinite hook 사용
+const { data, error, size, setSize, isValidating } = useSWRInfinite(
+  getKey,
+  (url) => fetch(url).then((res) => res.json())
+);
+
+export const useGetInfiniteBlogPost = () => {
+  return useSWRInfinite(getKey, fetcher);
+};
+```
+{% endcode %}
+
+{% code title="사용" lineNumbers="true" %}
+```tsx
+ const { data, mutate, size, setSize } = useGetInfiniteBlogPost();
+```
+{% endcode %}
+
+chatGPT + useSWRInfinite 공식문서에 있는 코드를 참고했습니다.
+
+useSWR과 useSWRInfinite 사용은 대부분 비슷하지만 swr key를 선언하는 방식이 다릅니다. 인덱스와 이전 페이지 데이터를 받고 페이지의 키를 반환하는 함수로 `getKey`를 선언하고 할당합니다.
+
+
+
+### 동작 방식
+
 동작 방식은 다음과 같습니다.
 
 1. useSWRInfinite로 data를 GET하는 코드를 선언적으로 작성합니다.
@@ -84,4 +158,12 @@ useSWRInfinite의 return값은 useSWR + 가져올 page의 수인 `size`와 page�
 
 
 
-&#x20;
+## 마무리
+
+* useSWRInfinite로 무한 스크롤에 대한 pagination을 쉽게 할 수 있고
+* Intersection Observer로 pagination의 기준을 잡을 수 있습니다.
+
+
+
+글을 읽어주셔서 감사합니다.
+
