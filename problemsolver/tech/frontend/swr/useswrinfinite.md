@@ -2,7 +2,7 @@
 description: 2022.04.26.
 ---
 
-# useSWRInfinite - Intersection Observer와 무한 스크롤 구현하기
+# useSWRInfinite - Intersection Observer와 함께 무한 스크롤 구현하기
 
 useSWRInfinite + Intersection Observer로 무한 스크롤을 구현한 경험을 서술해보겠습니다.
 
@@ -67,15 +67,20 @@ useSWRInfinite의 return값은 useSWR + 가져올 page의 수인 `size`와 page�
 
 {% embed url="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API" %}
 
+**Intersection Observer**로 taget하는 요소와 viewport 사이의 상호작용 변화를 동기적으로 관찰하고, 교차될 때 실행될 callback function을 등록할 수 있습니다. 단어의 의미 그대로 교차(ex. scroll) 관찰하는 것입니다.
 
-
-
+따라서 website는 target 요소의 교차를 지켜보기 위해 메인 스레드를 사용할 필요가 없어지고 브라우저는 intersection 관리를 최적화할 수 있습니다.
 
 
 
 ## 적용 방법
 
+동작 방식은 다음과 같습니다.
 
+1. useSWRInfinite로 data를 GET하는 코드를 선언적으로 작성합니다.
+2. Intersection Observer 함수를 만들고, data 리스트가 있을 때 ref를 추가한 target 요소를 data 리스트 최하단에 추가하여 observe합니다.
+3. 유저가 data 리스트를 최하단까지 스크롤하여 `entry.isIntersecting` 이면 useSWRInfinite의 setSize를 사용해 불러올 page만큼 size를 증가시켜 data 배열에 다음 data를 추가합니다.
+4. 계속 반복하다가 data를 더 이상 불러올 수 없으면 null을 반환하여 fetch를 종료합니다.
 
 
 
