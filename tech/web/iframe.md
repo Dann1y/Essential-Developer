@@ -46,7 +46,7 @@ X-Frame-Options가 sameorigin이었음에도 위 문제가 발생하여 iframe�
 저는 이렇게 접근했습니다.
 
 * iframe 내에 상태를 변경하려면 어떻게 해야할까?
-* 기존에 iframe 코드 내 있는 채팅을 띄우는 함수를 실행을 시키면 되는데 그것을 React 안에서 어떻게 처리해야할까?
+* 기존에 iframe 코드 내 있는 스타일을 변경하는 함수를 실행을 시키면 되는데 그것을 React 안에서 어떻게 처리해야할까?
 * iframe 안에 있는 객체에 직접 접근할 수 없구나, 그렇다면 다른 방법은 없을까?
 
 
@@ -66,7 +66,7 @@ X-Frame-Options가 sameorigin이었음에도 위 문제가 발생하여 iframe�
 
 ### 2. postMessage
 
-DOM 문서를 가리키는 Window 객체에는 [**postMessage**](https://developer.mozilla.org/ko/docs/Web/API/Window/postMessage) 라는 함수가 있어서 이것을 사용해 cross-origin 간에 안전한 통신이 가능합니다. same-origin-policy를 안전하게 우회하는 방법이 바로 이 postMessage를 이용하는 것입니다. postMessage는 모든 브라우저에서 호환이 되기 때문에 제가 찾는 가장 좋은 해결 방안이었습니다.
+DOM 문서를 가리키는 Window 객체에는 [**postMessage**](https://developer.mozilla.org/ko/docs/Web/API/Window/postMessage) 라는 함수가 있어서 이것을 사용해 **cross-origin 간에 안전한 통신**이 가능합니다. same-origin-policy를 안전하게 우회하는 방법이 바로 이 postMessage를 이용하는 것입니다. postMessage는 모든 브라우저에서 호환이 되기 때문에 제가 찾는 가장 좋은 해결 방안이었습니다.
 
 
 
@@ -74,8 +74,8 @@ DOM 문서를 가리키는 Window 객체에는 [**postMessage**](https://develop
 
 따라서 저는 이렇게 문제를 풀었습니다.
 
-1. BE 개발자와 소통하여 메시지를 어떤 형식으로 받을건지 정합니다.
-   1. object 형식으로도 보낼 수 있고, postMessage를 여러군데에서 사용해야했기 때문에 특정 type으로 어떤 이벤트에 대한 메시지인지 파악하고 FE에서 설정한 값들을 함께 담아 보냅니다.
+1. iframe을 띄우는 server에 메시지를 어떤 형식으로 받을건지 정합니다.
+   1. object 형식으로도 보낼 수 있고, postMessage를 여러 군데에서 사용해야했기 때문에 특정 type으로 어떤 이벤트에 대한 메시지인지 파악하고 FE에서 설정한 값들을 함께 담아 보냅니다.
 2. iframe에 useRef로 ref를 할당하여 iframe에 접근합니다.
 3. `iframeRef.current.contentWindow` 가 있을 때 postMessage를 하는 함수 따로 만들어 호출합니다.
 4. [**공식 문서 예시**](https://developer.mozilla.org/ko/docs/Web/API/Window/postMessage#example)에도 나와 있듯이 message를 받은 곳에서 `window.addEventListener("message")`로 어떤 message를 받는지 판별하고 특정 함수를 실행합니다.&#x20;
