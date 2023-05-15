@@ -123,7 +123,11 @@ Frontend 일련의 과정을 경험 많은 시니어 분의 서포팅과 함께 
 
 
 
+<div align="center">
+
 <figure><img src="https://blog.kakaocdn.net/dn/dIOu6i/btrLMAantst/5ciTghyhVMYsa88dRFi9KK/img.jpg" alt="company view"><figcaption><p>틈새 회사 사진</p></figcaption></figure>
+
+</div>
 
 남자라면 피할 수 없는.. 🪖
 
@@ -249,7 +253,11 @@ ESTJ가 능력을 인정받고 업무로써 칭찬을 받는다는 건..
 저는 8월달에 2주간 파리, 런던, 맨체스터, 이비자, 마요르카 총 5개의 도시를 방문했습니다.\
 
 
+<div align="center">
+
 <figure><img src="../../.gitbook/assets/파리.jpeg" alt=""><figcaption></figcaption></figure>
+
+</div>
 
 \
 

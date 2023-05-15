@@ -8,15 +8,11 @@ description: 2022.10.12.
 
 이번에는 useSWR로 global state를 관리했던 경험을 팀에 발표한 것을 바탕으로 이야기해 보겠습니다.
 
-&#x20;
+이 블로그에 작성한 코드는 모두 swr 공식문서를 바탕으로 작성된 예시코드이며 production 단계에서 사용하려면 추가적인 코드 작성 및 수정이 필요합니다.
 
-&#x20;
 
-***
 
 #### useSWR을 사용하면서 global state를 관리해야 하는 상황
-
-<figure><img src="https://blog.kakaocdn.net/dn/bjAaPD/btr4jLrwdsP/UmyKONM0tC2zjxDKiGN3kK/img.png" alt=""><figcaption></figcaption></figure>
 
 로그인 Dialog를 open하는 액션을 여러 컴포넌트에서 처리해야 할 때가 생겼습니다.
 

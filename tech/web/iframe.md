@@ -35,7 +35,7 @@ X-Frame-Options가 sameorigin이었음에도 위 문제가 발생하여 iframe�
   * 따라서 X-Frame-Options로 같은 도메인, 혹은 허용 자체를 하지 않음으로써 이러한 취약점을 보완할 수 있습니다.
 * [**Clickjacking** ](https://en.wikipedia.org/wiki/Clickjacking)방지
   * 축구를 좋아해서 하이재킹에 대한 개념을 알고 있었기 때문에 이름만으로 무엇을 방지하는지 유추할 수 있었습니다.
-  * ![](<../../.gitbook/assets/image (2) (1).png>)
+  * ![](<../../.gitbook/assets/image (2) (1) (1).png>)
   * 투명 레이어 위에 다른 페이지를 로드하여 사용자에게 보이는 것과 실제 동작하는 것이 다른 것을 방지합니다.
   * 사이트 내 콘텐츠들이 다른 사이트에 포함되지 않도록 X-Frame-Options로 해결할 수 있기 때문입니다.
 
@@ -46,12 +46,6 @@ X-Frame-Options가 sameorigin이었음에도 위 문제가 발생하여 iframe�
 
 
 ### 2. 실시간으로 iframe과 통신을 하려면 어떻게 해야할까?
-
-<figure><img src="../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption><p>Twip Dashboard > 채팅창 위젯 오버레이</p></figcaption></figure>
-
-개발자 도구로 열어서 확인이 가능하겠지만 대시보드에서 오버레이 설정하고 실시간으로 채팅창의 스타일을 확인하기 위해서는 iframe과 소통이 필요합니다. 실시간으로 채팅을 띄우는 것이 그리 어려운 일은 아니지만 iframe을 통해 띄워야한다면 이야기가 달라집니다.
-
-
 
 저는 이렇게 접근했습니다.
 
@@ -83,16 +77,16 @@ DOM 문서를 가리키는 Window 객체에는 [**postMessage**](https://develop
 
 
 
-// 순서 사진 추가
+<figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
 따라서 저는 이렇게 문제를 풀었습니다.
 
-1. BE 개발자분과 소통하여 메시지를 어떤 형식으로 받을건지 정합니다.
+1. BE 개발자와 소통하여 메시지를 어떤 형식으로 받을건지 정합니다.
    1. object 형식으로도 보낼 수 있고, postMessage를 여러군데에서 사용해야했기 때문에 특정 type으로 어떤 이벤트에 대한 메시지인지 파악하고 FE에서 설정한 값들을 함께 담아 보냅니다.
 2. iframe에 useRef로 ref를 할당하여 iframe에 접근합니다.
 3. `iframeRef.current.contentWindow` 가 있을 때 postMessage를 하는 함수 따로 만들어 호출합니다.
 4. [**공식 문서 예시**](https://developer.mozilla.org/ko/docs/Web/API/Window/postMessage#example)에도 나와 있듯이 message를 받은 곳에서 `window.addEventListener("message")`로 어떤 message를 받는지 판별하고 특정 함수를 실행합니다.&#x20;
-5. 채팅창 스타일에 대한 Input 값이 변경되면 이 값을 watch하는 변수를 가져오고 useEffect 구문 안에서 스타일이 변경될 때 마다 postMessage를 실행하여 실시간으로 iframe내의 스타일이 적용되는 함수를 실행하도록 했습니다.
+5. 스타일에 대한 Input 값이 변경되면 이 값을 watch하는 변수를 가져오고 useEffect 구문 안에서 스타일이 변경될 때 마다 postMessage를 실행하여 실시간으로 iframe내의 스타일이 적용되는 함수를 실행하도록 했습니다.
 
 
 

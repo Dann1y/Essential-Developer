@@ -20,9 +20,7 @@ description: 2023.05.03.
 
 Input이 많아지는만큼 Form의 코드 수도 증가합니다. 증가한 코드 수는 안 그래도 복잡한 Input을 더욱 파악하기 어렵게 만듭니다. 따라서 이를 해결하기 위해서 **중복되는 역할을 추상화**한다는 개념으로 접근해보았습니다.
 
-
-
-<figure><img src="../../../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (5).png" alt=""><figcaption><p>google form example</p></figcaption></figure>
 
 이 HTML 위젯은 label과 input, 크게 2가지로 볼 수 있습니다.
 
@@ -57,6 +55,8 @@ label을 부모로 두고 input을 children으로 받아서 사용할 때 편의
 1번: options prop은 input에 필요한 prop을 받고 나머지 props는 FormLabel에 사용합니다.
 
 2번: Input에 사용할 prop만 props에서 가져와 Input에 내려줍니다.
+
+
 
 {% code title="InputWidget 사용할 때" lineNumbers="true" %}
 ```tsx
@@ -131,6 +131,8 @@ export const validationSchema: ZodObject<
 
 ```
 {% endcode %}
+
+
 
 4번: POST 요청을 보낼 때의 body 값 = form에서 보내야할 data이기 때문에 [**OpenAPI Generator를 사용**](https://docs.essential-dev.blog/tech/web/http/http-openapi-generator)하여 나온 interface의 key 값만 가져와 validationSchema를 선언할 때 발생하는 오타, 빠진 부분을 사전에 파악하여 휴먼에러를 줄일 수 있습니다.
 
@@ -209,7 +211,7 @@ export const BlogConfigSetupForm = () => {
 ```
 {% endcode %}
 
-
+react-hook-form 공식문서의 코드를 응용하여 예시 코드를 작성해보았습니다.
 
 * **1번**: POST 요청을 보낼 때의 body 값 = form에서 보내야할 data이기 때문에 [**OpenAPI Generator를 사용**](https://docs.essential-dev.blog/tech/web/http/http-openapi-generator)하여 나온 interface를 FormValueType으로 선언합니다.\
 
@@ -230,6 +232,7 @@ export const BlogConfigSetupForm = () => {
     <figure><img src="../../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
     [FormProvider](https://react-hook-form.com/api/usecontroller/controller/)사용하는 경우 control은 optional이지만 앞서 말씀드린 Controller의 name의 type을 관리하기 위하여 저는 control을 사용하였습니다.\
+    \
     예를 들어 controller의 name이 `title` 인데 만약 `titl` 로 오타가 난 경우 `titl is not assignable to type (FormValueType)` 와 같이 에러를 마주하여 휴먼 에러를 줄일 수 있습니다.
 
 

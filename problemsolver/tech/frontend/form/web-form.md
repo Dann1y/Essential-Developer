@@ -55,7 +55,7 @@ Web에서 Form을 다루기 위해서는 form을 선언해야하는데, 이 때 
 
 label을 input과 연관시키는 이유가 무엇일까요?
 
-<figure><img src="../../../../.gitbook/assets/Screenshot 2023-05-02 at 3.38.48 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2).png" alt=""><figcaption><p>google form</p></figcaption></figure>
 
 * label의 텍스트가 현재 Input에 무엇을 입력해야하는지 알기 쉽습니다.
 * label을 클릭하여 Input을 focus 할 수 있습니다. 모바일 디바이스처럼 터치 스크린에서는 더욱 큰 장점이 됩니다.
@@ -70,9 +70,9 @@ label을 input과 연관시키는 이유가 무엇일까요?
 
 서버에 올바른 값을 보내기 위함도 있지만 Form을 입력하는 사용자로 하여금 올바른 값을 입력했는지 명시해주기 위함도 있습니다.&#x20;
 
-<figure><img src="../../../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
 
-후원할 캐시를 입력할 때는 내가 캐시가 부족하지 않은지, 최소 or 최댓값을 충족하는지, 숫자로 입력했는지를 고려할 수 있습니다.
+현재 잔액을 입력할 때 부족하지 않은지, 최소 or 최댓값을 충족하는지, 숫자로 입력했는지를 고려할 수 있습니다.
 
 Validation을 수행할 수 있는 방법은 built-in form validation, javascript로 총 2가지가 있습니다.
 
