@@ -41,10 +41,6 @@ X-Frame-Options가 sameorigin이었음에도 위 문제가 발생하여 iframe�
 
 
 
-
-
-
-
 ### 2. 실시간으로 iframe과 통신을 하려면 어떻게 해야할까?
 
 저는 이렇게 접근했습니다.
@@ -59,15 +55,12 @@ X-Frame-Options가 sameorigin이었음에도 위 문제가 발생하여 iframe�
 
 ## 해결 방법
 
-
-
 ### 1. iframe refused to connect
 
 * X-Frame-Options가 same origin이라 로컬 환경의 도메인도 같았기 때문에 무슨 문제인지 파악이 어려운 상황이었습니다. ([MDN에서 Nginx config 수정하는 방법을 안내해줌](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options#configuring\_nginx))
-* 이 때 FE에서 수정할 수 있는 것이 없었기 때문에 BE팀과 Devops팀에 Nginx config 설정에 대해서 도움을 요청 드렸습니다.
 * X-Frame-Options 뿐만 아니라 Content-Security-Policy라는 컨텐츠 보안 정책이 또 있었고 이것을 우리 도메인에 맞게 설정하여 외부로부터 들어올 수 있는 비정상적인 접근을 막았습니다.
 
-제가 직접적으로 수정한 것은 아니지만 **X-Frame-Options**와 사용자 에이전트가 주어진 페이지에 대해 로드할 수 있는 리소스를 제어하는[ **Content-Security-Policy**](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)라는 Http 보안 옵션에 대해서 알게 되었습니다.
+&#x20;**X-Frame-Options**와 사용자 에이전트가 주어진 페이지에 대해 로드할 수 있는 리소스를 제어하는[ **Content-Security-Policy**](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)라는 Http 보안 옵션에 대해서 알게 되었습니다.
 
 
 
