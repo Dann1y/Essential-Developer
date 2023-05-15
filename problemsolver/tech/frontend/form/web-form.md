@@ -70,11 +70,13 @@ label을 input과 연관시키는 이유가 무엇일까요?
 
 서버에 올바른 값을 보내기 위함도 있지만 Form을 입력하는 사용자로 하여금 올바른 값을 입력했는지 명시해주기 위함도 있습니다.&#x20;
 
-<figure><img src="../../../../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (13).png" alt=""><figcaption><p>google form</p></figcaption></figure>
 
 현재 잔액을 입력할 때 부족하지 않은지, 최소 or 최댓값을 충족하는지, 숫자로 입력했는지를 고려할 수 있습니다.
 
 Validation을 수행할 수 있는 방법은 built-in form validation, javascript로 총 2가지가 있습니다.
+
+
 
 ### I. Built-in form validation
 
