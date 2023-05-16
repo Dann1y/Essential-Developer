@@ -1,6 +1,5 @@
 ---
 description: Problem solver. focused on the essential problems,
-layout: landing
 ---
 
 # 📈 Who I am
