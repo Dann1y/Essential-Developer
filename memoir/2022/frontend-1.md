@@ -255,7 +255,7 @@ ESTJ가 능력을 인정받고 업무로써 칭찬을 받는다는 건..
 
 <div align="center">
 
-<figure><img src="../../.gitbook/assets/파리.jpeg" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/파리 (1).jpeg" alt=""><figcaption></figcaption></figure>
 
 </div>
 

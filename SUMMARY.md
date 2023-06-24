@@ -12,7 +12,7 @@
 * [기술 혁신 속에서 나는 어떻게 해야할까?](growthmoment/undefined-1.md)
 * [멍청한 질문이라도 던져야한다](growthmoment/stupid-question/README.md)
   * [gitbook image resize질문](growthmoment/stupid-question/gitbook-image-resize.md)
-* [절대 나를 믿지마](growthmoment/undefined-2.md)
+* [절대 나를 믿지마](growthmoment/do-not-trust-myself.md)
 
 ## 🧑💻 Tech
 
