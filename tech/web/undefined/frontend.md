@@ -26,6 +26,23 @@
 * **CLS**
   * Cumalative Layout shift
   * 사용자의 화면에 shift가 얼마나 덜 일어나고 안정적인가?
+* **INP**
+  * FID를 대체하기 위해 나왔다.
+  * 페이지의 전반적인 유저 상호작용을 측정한다.
+
+
+
+* SEO 측면에서 속도도 굉장히 중요한 지표이다.
+
+
+
+## 2. 웹 성능 측정하는 방법
+
+* Search Console, lighthouse 처럼 dev tools를 활용한다. (30:00)
+
+### Real User Monitoring Data
+
+* Rum Data -> 실제 사용자가 경험하는 data
 
 
 
