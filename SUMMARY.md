@@ -17,7 +17,10 @@
 ## 🧑💻 Tech
 
 * [WEB](problemsolver/tech/web/README.md)
-  * [웹 안에 또 다른 웹, iframe과 실시간 소통을 하며 겪은 문제](tech/web/iframe.md)
+  * [SEO](tech/web/seo/README.md)
+    * [SEO, 그리고 essential-dev 검색엔진 최적화하기](tech/web/seo/seo-essential-dev.md)
+  * [iframe](tech/web/iframe/README.md)
+    * [웹 안에 또 다른 웹, iframe과 실시간 소통을 하며 겪은 문제](tech/web/iframe/iframe.md)
   * [HTTP 통신, 그리고 나의 경험](problemsolver/tech/web/http/README.md)
     * [HTTP 개요](problemsolver/tech/web/http/http.md)
     * [HTTP 통신, OpenAPI Generator로 추상화하기](problemsolver/tech/web/http/http-openapi-generator.md)
