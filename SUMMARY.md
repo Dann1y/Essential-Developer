@@ -3,7 +3,7 @@
 * [📈 Who I am](README.md)
 * [✍ About Essential Blog](about.md)
 
-## ⤴ 성장 모먼트 <a href="#growthmoment" id="growthmoment"></a>
+## ⤴ Growth Moment <a href="#growthmoment" id="growthmoment"></a>
 
 * [실패를 두려워하지 않는법 | 완벽주의 덜어내기](growthmoment/or.md)
 * [일 잘하는 개발자](growthmoment/undefined/README.md)
@@ -29,6 +29,9 @@
   * [성능 최적화](tech/web/undefined/README.md)
     * [Frontend 성능 최적화](tech/web/undefined/frontend.md)
 * [Frontend](problemsolver/tech/frontend/README.md)
+  * [Monorepo](tech/frontend/monorepo/README.md)
+    * [Yarn workspace & pnp mode](tech/frontend/monorepo/yarn-workspace-and-pnp-mode.md)
+    * [Monorepo bundle size 최적화](tech/frontend/monorepo/monorepo-bundle-size.md)
   * [Form의 개념, 내가 사용한 방법](problemsolver/tech/frontend/form/README.md)
     * [Web에서의 Form이란?](problemsolver/tech/frontend/form/web-form.md)
     * [Form을 관리하고 최적화한 방법](problemsolver/tech/frontend/form/form.md)
@@ -36,6 +39,10 @@
     * [useSWRImmutable - global state 관리하기](problemsolver/tech/frontend/swr/useswrimmutable-global-state.md)
     * [useSWRInfinite - Intersection Observer와 함께 무한 스크롤 구현하기](problemsolver/tech/frontend/swr/useswrinfinite.md)
     * [useSWRMutation - Mutate 추상화하기](problemsolver/tech/frontend/swr/useswrmutation-mutate.md)
+
+## 🫂 Social Intelligence
+
+* [비개발 직군과 효율적으로 소통하기 위하여](social-intelligence/undefined.md)
 
 ## 🤔 회고록 <a href="#memoir" id="memoir"></a>
 
