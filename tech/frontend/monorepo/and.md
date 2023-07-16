@@ -2,17 +2,18 @@
 description: 2023.07.16.
 ---
 
-# 궁극의 Monorepo 업그레이드
+# 모노레포 업그레이드 & 관리: 효율적인 운영을 위한 실전 가이드
 
-생각의 과정
+
+
+[https://github.com/vercel/turbo/issues/693](https://github.com/vercel/turbo/issues/693)생각의 과정
 
 1. 서론
    1. 발표 계기
 2. 기존에 사용해온 방식
 3. 모노레포를 사용하면서 겪은 문제
    1. node\_modules 유령 의존성
-   2. 번들 사이즈
-   3. 프로젝트의 노쇠화 (버전 관리)&#x20;
+   2. 프로젝트의 노쇠화 (버전 관리)&#x20;
       1. 의존성 버전 관리
       2. storybook 버전 업그레이드
 4. 해결 방법
@@ -65,17 +66,27 @@ description: 2023.07.16.
 
 ### 3-1. node\_modules 유령 의존성
 
+이미 여러 모노레포 발표들에서 node\_modules에 대한 문제점들을 많이 다뤄주셨는데요, 저희 역시 이 문제를 겪게 되었습니다.
+
+<figure><img src="../../../.gitbook/assets/Screenshot 2023-07-16 at 9.06.14 PM.png" alt=""><figcaption></figcaption></figure>
+
+가장 대표적인 예시로는 작업자가 실수로 A 서비스에서만 사용되어야할 패키지를 루트 혹은 다른 B서비스의  package.json에 명시해도 실제로는 root의 node\_modules를 참조하기 때문에 A서비스의 package.json 명단에는 없지만 import하고 사용이 가능했습니다. 이로 인해 의존성 관리가 점점 느슨해져 관리의 복잡도가 올라갔습니다.
 
 
-### 3-2. 버전 관리
+
+또한, CI/CD 파이프라인에서 프로젝트를 빌드할 때 yarn install로 의존성 설치하는 시간이 굉장히 길었습니다. 의존성 설치 시간을 줄이는 사례를 찾아보며 node\_modules에 더 이상 의존하지 않아야겠다고 생각했습니다.
 
 
 
-### 3-3. 프로젝트의 노쇠화 (버전 관리)
+### 3-2. 프로젝트의 노쇠화 (버전 관리)
+
+시간이 지남에 따라&#x20;
 
 ***
 
 ## 4. 해결 방법
+
+<figure><img src="../../../.gitbook/assets/image (7).png" alt="" width="563"><figcaption><p><a href="https://github.com/vercel/turbo/issues/693">https://github.com/vercel/turbo/issues/693</a></p></figcaption></figure>
 
 
 

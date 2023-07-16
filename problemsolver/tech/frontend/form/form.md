@@ -229,7 +229,7 @@ react-hook-form 공식문서의 코드를 응용하여 예시 코드를 작성�
     \
 
 
-    <figure><img src="../../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
     [FormProvider](https://react-hook-form.com/api/usecontroller/controller/)사용하는 경우 control은 optional이지만 앞서 말씀드린 Controller의 name의 type을 관리하기 위하여 저는 control을 사용하였습니다.\
     \

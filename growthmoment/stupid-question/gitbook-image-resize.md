@@ -2,7 +2,7 @@
 description: 2023.05.07.
 ---
 
-# 멍청한 gitbook image resize질문
+# gitbook image resize질문
 
 <figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
@@ -10,7 +10,7 @@ description: 2023.05.07.
 
 나는 기존 유저들이 대체 어떻게 이 불편함을 참고 사용하는지 이해할 수 없었고 [**github discussion**](https://github.com/orgs/GitbookIO/discussions/181)에 질문을 남겼다.
 
-<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 원래는 이메일로 full size 이미지만 지원한다는 답장을 받았고 단점이 있지만 카테고리 나뉘는게 너무 편하고 좋아서 사용하려고 했다.
 
