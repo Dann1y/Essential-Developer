@@ -20,7 +20,7 @@ description: 2023.05.03.
 
 Input이 많아지는만큼 Form의 코드 수도 증가합니다. 증가한 코드 수는 안 그래도 복잡한 Input을 더욱 파악하기 어렵게 만듭니다. 따라서 이를 해결하기 위해서 **중복되는 역할을 추상화**한다는 개념으로 접근해보았습니다.
 
-<figure><img src="../../../../.gitbook/assets/image (5).png" alt=""><figcaption><p>google form example</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (5) (2).png" alt=""><figcaption><p>google form example</p></figcaption></figure>
 
 이 HTML 위젯은 label과 input, 크게 2가지로 볼 수 있습니다.
 
