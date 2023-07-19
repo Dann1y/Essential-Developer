@@ -61,3 +61,4 @@
 ## 📚 book
 
 * [원칙 - 레이 달리오](book/undefined.md)
+* [악인론 - 손수현](book/undefined-1.md)
