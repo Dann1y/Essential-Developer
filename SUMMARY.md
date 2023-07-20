@@ -40,6 +40,7 @@
     * [useSWRImmutable - global state 관리하기](problemsolver/tech/frontend/swr/useswrimmutable-global-state.md)
     * [useSWRInfinite - Intersection Observer와 함께 무한 스크롤 구현하기](problemsolver/tech/frontend/swr/useswrinfinite.md)
     * [useSWRMutation - Mutate 추상화하기](problemsolver/tech/frontend/swr/useswrmutation-mutate.md)
+  * [ES Modules](tech/frontend/es-modules.md)
 
 ## 🫂 Social Intelligence
 
