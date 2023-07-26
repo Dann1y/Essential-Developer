@@ -13,6 +13,7 @@
 * [멍청한 질문이라도 던져야한다](growthmoment/stupid-question/README.md)
   * [gitbook image resize질문](growthmoment/stupid-question/gitbook-image-resize.md)
 * [절대 나를 믿지마](growthmoment/do-not-trust-myself.md)
+* [WIP: 개발자, 학자와 코더 사이](growthmoment/wip.md)
 
 ## 🧑💻 Tech
 
