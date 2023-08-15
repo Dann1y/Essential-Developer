@@ -43,9 +43,9 @@
     * [useSWRMutation - Mutate 추상화하기](problemsolver/tech/frontend/swr/useswrmutation-mutate.md)
   * [ES Modules](tech/frontend/es-modules.md)
 
-## 🫂 Social Intelligence
+## 🫂 후기 <a href="#experience" id="experience"></a>
 
-* [비개발 직군과 효율적으로 소통하기 위하여](social-intelligence/undefined.md)
+* [2023 인프콘](experience/2023.md)
 
 ## 🤔 회고록 <a href="#memoir" id="memoir"></a>
 
