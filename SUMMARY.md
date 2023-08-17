@@ -6,10 +6,7 @@
 ## ⤴ Growth Moment <a href="#growthmoment" id="growthmoment"></a>
 
 * [실패를 두려워하지 않는법 | 완벽주의 덜어내기](growthmoment/or.md)
-* [일 잘하는 개발자](growthmoment/undefined/README.md)
-  * [일 잘하는 개발자가 되기 위한 7가지 | EP01](growthmoment/undefined/7-or-ep01.md)
-  * [일 잘하는 개발자가 되기 위한 7가지 | EP02](growthmoment/undefined/7-or-ep02.md)
-* [기술 혁신 속에서 나는 어떻게 해야할까?](growthmoment/undefined-1.md)
+* [기술 혁신 속에서 나는 어떻게 해야할까?](growthmoment/undefined.md)
 * [멍청한 질문이라도 던져야한다](growthmoment/stupid-question/README.md)
   * [gitbook image resize질문](growthmoment/stupid-question/gitbook-image-resize.md)
 * [절대 나를 믿지마](growthmoment/do-not-trust-myself.md)
