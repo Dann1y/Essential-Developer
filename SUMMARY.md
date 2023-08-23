@@ -11,6 +11,7 @@
   * [gitbook image resize질문](growthmoment/stupid-question/gitbook-image-resize.md)
 * [절대 나를 믿지마](growthmoment/do-not-trust-myself.md)
 * [개발자, 학자와 코더 사이](growthmoment/developer-thinking.md)
+* [감정적인 의사소통 대처법](growthmoment/undefined-1.md)
 
 ## 🧑💻 Tech
 
