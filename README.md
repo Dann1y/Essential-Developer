@@ -25,7 +25,7 @@ description: Problem solver. focused on the essential problems,
 
 ***
 
-#### 최근 작성한 글 바로가기
+### 최근 작성한 글 바로가기 👇🏻
 
 {% content-ref url="tech/frontend/transpiler/babel-polyfill.md" %}
 [babel-polyfill.md](tech/frontend/transpiler/babel-polyfill.md)
