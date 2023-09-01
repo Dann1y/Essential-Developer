@@ -20,3 +20,17 @@ description: Problem solver. focused on the essential problems,
 
 앞으로의 커리어에 있어서 Skill을 잘 사용하는 개발자보다는\
 **논리적 사고**를 통해 불확실한 미래의 폭 넓은 문제를 해결할 수 있는 사람이 되기 위해 노력합니다.
+
+
+
+***
+
+#### 최근 작성한 글 바로가기
+
+{% content-ref url="tech/frontend/transpiler/babel-polyfill.md" %}
+[babel-polyfill.md](tech/frontend/transpiler/babel-polyfill.md)
+{% endcontent-ref %}
+
+{% content-ref url="memoir/2023/2023.08..md" %}
+[2023.08..md](memoir/2023/2023.08..md)
+{% endcontent-ref %}
