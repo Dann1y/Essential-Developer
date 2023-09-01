@@ -1,5 +1,16 @@
 ---
 description: Problem solver. focused on the essential problems,
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: false
 ---
 
 # 📈 Who I am
