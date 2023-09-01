@@ -14,6 +14,8 @@
 
 ## 🧑💻 Tech
 
+* [Javascript](tech/javascript/README.md)
+  * [\[WIP\] Programming & Timing](tech/javascript/wip-programming-and-timing.md)
 * [WEB](problemsolver/tech/web/README.md)
   * [SEO](tech/web/seo/README.md)
     * [SEO, 그리고 essential-dev 검색엔진 최적화하기](tech/web/seo/seo-essential-dev.md)
