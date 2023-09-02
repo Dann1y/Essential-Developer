@@ -41,9 +41,9 @@
     * [useSWRInfinite - Intersection Observer와 함께 무한 스크롤 구현하기](problemsolver/tech/frontend/swr/useswrinfinite.md)
     * [useSWRMutation - Mutate 추상화하기](problemsolver/tech/frontend/swr/useswrmutation-mutate.md)
   * [ES Modules](tech/frontend/es-modules.md)
-  * [Transpiler](tech/frontend/transpiler/README.md)
-    * [Babel과 Polyfill](tech/frontend/transpiler/babel-polyfill.md)
-    * [왜 Next는 Babel에서 SWC로 Compiler를 변경했는가?](tech/frontend/transpiler/next-babel-swc-compiler.md)
+  * [Compiler](tech/frontend/compiler/README.md)
+    * [Babel과 Polyfill](tech/frontend/compiler/babel-polyfill.md)
+    * [왜 Next는 Babel에서 SWC로 Compiler를 변경했는가?](tech/frontend/compiler/next-babel-swc-compiler.md)
 
 ## 🫂 후기 <a href="#experience" id="experience"></a>
 

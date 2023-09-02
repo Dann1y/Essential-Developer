@@ -38,8 +38,8 @@ layout:
 
 ### 최근 작성한 글 바로가기 👇🏻
 
-{% content-ref url="tech/frontend/transpiler/babel-polyfill.md" %}
-[babel-polyfill.md](tech/frontend/transpiler/babel-polyfill.md)
+{% content-ref url="tech/frontend/compiler/babel-polyfill.md" %}
+[babel-polyfill.md](tech/frontend/compiler/babel-polyfill.md)
 {% endcontent-ref %}
 
 {% content-ref url="memoir/2023/2023.08..md" %}
