@@ -4,7 +4,7 @@ description: 2023.05.07.
 
 # gitbook image resize질문
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
 [**4월 회고록**](https://docs.essential-dev.blog/memoir/2023/2023.04.#blog)에서 작성한 것처럼 gitbook의 단점이 붙여넣기한 이미지의 사이즈를 조절할 수 없다는 것이 있었다.
 

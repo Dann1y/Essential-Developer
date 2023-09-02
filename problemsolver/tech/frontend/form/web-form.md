@@ -55,7 +55,7 @@ Web에서 Form을 다루기 위해서는 form을 선언해야하는데, 이 때 
 
 label을 input과 연관시키는 이유가 무엇일까요?
 
-<figure><img src="../../../../.gitbook/assets/image (2).png" alt=""><figcaption><p>google form</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1).png" alt=""><figcaption><p>google form</p></figcaption></figure>
 
 * label의 텍스트가 현재 Input에 무엇을 입력해야하는지 알기 쉽습니다.
 * label을 클릭하여 Input을 focus 할 수 있습니다. 모바일 디바이스처럼 터치 스크린에서는 더욱 큰 장점이 됩니다.
@@ -118,7 +118,7 @@ validation을 통해 input value를 검증할 때의 시점에 따라 제어 혹
 
 Form의 data가 client-side validation을 마쳤다면, 폼을 submit 하기 위한 준비가 되었다는 뜻입니다.
 
-<figure><img src="../../../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption><p><a href="https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_and_retrieving_form_data#clientserver_architecture">https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_and_retrieving_form_data#clientserver_architecture</a></p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption><p><a href="https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_and_retrieving_form_data#clientserver_architecture">https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_and_retrieving_form_data#clientserver_architecture</a></p></figcaption></figure>
 
 data를 서버에 HTTP 프로토콜을 사용하여 보낼 때 HTML form은 정말 **유저 친화적**입니다.
 

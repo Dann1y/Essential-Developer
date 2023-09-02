@@ -2,7 +2,7 @@
 description: 2023.07.16.
 ---
 
-# \[WIP] Monorepo의 의존성 관리와 운영 사례
+# \[WIP] Monorepo 2년차, 효율적으로 사용하기
 
 ## 생각의 과정
 
@@ -138,7 +138,7 @@ Yarn workspace + pnp mode를 적용한 후에 의존성 관리가 정상적으�
 
 Yarn workspace + pnp mode를 적용하며 발생한 여러 문제를 해결하고 이제 관리가 안 되어있던 버전을 가능한 최신으로 맞춰주는 작업을 했습니다.
 
-<figure><img src="../../../.gitbook/assets/image (3).png" alt="" width="563"><figcaption><p>.yarnrc.yml</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1).png" alt="" width="563"><figcaption><p>.yarnrc.yml</p></figcaption></figure>
 
 이 때`@yarnpkg/plugin-interactive-tools` 라는 플러그인을 사용했는데요, 한 눈에 현재 프로젝트에서 사용하고 있는 의존성과 그 버전을 알 수 있고, 키보드 방향키로 버전을 선택하여 바로 업그레이드도 가능해서 너무 좋았습니다.
 

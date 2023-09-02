@@ -25,7 +25,7 @@ Client와 Server사이에 동일한 형태의 Interface로 아키텍쳐를 간�
 
 이 안에서 총 4가지의 원칙이 있습니다.
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption><p><a href="https://restapilinks.com/uniform-interface/">https://restapilinks.com/uniform-interface/</a></p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption><p><a href="https://restapilinks.com/uniform-interface/">https://restapilinks.com/uniform-interface/</a></p></figcaption></figure>
 
 * **Resource-Based**
   * 각 리소스는 URI(resource identifier)로 요청이 동일한지 확인합니다.
@@ -47,7 +47,7 @@ Client와 Server사이에 동일한 형태의 Interface로 아키텍쳐를 간�
 
 ### Stateless
 
-<figure><img src="../../../../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption><p><a href="https://restapilinks.com/stateless/">https://restapilinks.com/stateless/</a></p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption><p><a href="https://restapilinks.com/stateless/">https://restapilinks.com/stateless/</a></p></figcaption></figure>
 
 **REST - **<mark style="color:red;">**RE**</mark>**presentational **<mark style="color:red;">**S**</mark>**tate **<mark style="color:red;">**T**</mark>**ransfer**
 
@@ -102,7 +102,7 @@ Client와 Server사이에 동일한 형태의 Interface로 아키텍쳐를 간�
 
 
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption><p><a href="https://restapilinks.com/layered-system/">https://restapilinks.com/layered-system/</a></p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption><p><a href="https://restapilinks.com/layered-system/">https://restapilinks.com/layered-system/</a></p></figcaption></figure>
 
 * Client는 직접 end server에 연결 됐는지, 중간에 하나를 거치는지는 알 수 없습니다.
 * load-balancing을 활성화하고, Shared-caches로 시스템 확장성을 증가시킬 수 있습니다.
