@@ -23,7 +23,7 @@ layout:
 
 
 
-저는 스트리밍 후원 플랫폼 [**트윕**](https://app.twip.kr/donate/dann11y)에서 대표적으로 크리에이터 후원페이지, 대시보드, 디자인 시스템에 기여하고 있으며 **Form과 Input**을 관리하고 Data fetching하는 과정에서 발생하는 **문제점을 효율적으로 풀어낸 경험**이 있습니다.
+저는 스트리밍 후원 플랫폼 [**트윕**](https://app.twip.kr/donate/dann11y)에서 대표적으로 크리에이터 후원페이지, 대시보드, 디자인 시스템에 기여하며 **문제점을 효율적으로 풀어낸 경험**이 있습니다.
 
 개발팀을 비롯하여 타 직군과 소통할 때 **문제 해결 지향적**으로 합의점을 찾아 궁극적으로 서비스의 개선에 초점을 두고 있습니다. 또한, 특정 행동이나 피드백과 같은 데이터를 기반하여 의사결정하는 것을 좋아합니다.
 
@@ -38,10 +38,7 @@ layout:
 
 ### 최근 작성한 글 바로가기 👇🏻
 
-{% content-ref url="tech/frontend/compiler/babel-polyfill.md" %}
-[babel-polyfill.md](tech/frontend/compiler/babel-polyfill.md)
-{% endcontent-ref %}
-
-{% content-ref url="memoir/2023/2023.08..md" %}
-[2023.08..md](memoir/2023/2023.08..md)
-{% endcontent-ref %}
+* [next-babel-swc-compiler.md](tech/frontend/transpiler/next-babel-swc-compiler.md "mention")
+* [javascript-language-engine-timing.md](tech/javascript/javascript-language-engine-timing.md "mention")
+* [babel-polyfill.md](tech/frontend/transpiler/babel-polyfill.md "mention")
+* [2023.08..md](memoir/2023/2023.08..md "mention")
