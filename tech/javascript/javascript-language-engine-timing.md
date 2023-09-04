@@ -32,16 +32,16 @@ description: 2023.09.02.
 
 <figure><img src="../../.gitbook/assets/1.gif" alt=""><figcaption></figcaption></figure>
 
-1. 기본적으로 Javascript는 HTML parser가 script 태그를 마주치면 코드는 network, cache, service worker로 **로드를 시도**합니다.
-   * 로드의 response로 요청했던 스크립트를 Byte stream으로 받습니다.
+1. 기본적으로 Javascript는 HTML parser가 script 태그를 마주치면 코드는 network, cache, service worker로부터 **로드를 시도**합니다.
+   * response에 요청했던 스크립트를 Byte stream으로 받습니다.
    * 이 때 Byte stream decoder가 디코딩합니다.
 
 
 
 <figure><img src="../../.gitbook/assets/2.gif" alt=""><figcaption></figcaption></figure>
 
-2. Byte stream decoder가 디코딩된 byte stream로 부터 **token을 생성**합니다.
-   * 여기서 생성된 토큰은 Parser로 보내집니다.
+2. Byte stream decoder가 디코딩된 byte stream로 부터 **token을 생성**합니다. (Tokenizing)
+   * 여기서 생성된 토큰은 Parser로 보내집니다. (Parsing)
    * 이 때 Parser와 pre-parser 2가지가 있는데
    * pre-parser는 나중에 사용할 수 있는 코드를 처리하고 (button click event)
    * Parser는 즉시 필요한 코드를 처리합니다.
