@@ -1,2 +1,0 @@
-# Yarn workspace & pnp mode
-

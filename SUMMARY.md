@@ -30,8 +30,6 @@
     * [Frontend 성능 최적화](tech/web/undefined/frontend.md)
 * [Frontend](problemsolver/tech/frontend/README.md)
   * [Monorepo](tech/frontend/monorepo/README.md)
-    * [Yarn workspace & pnp mode](tech/frontend/monorepo/yarn-workspace-and-pnp-mode.md)
-    * [Monorepo bundle size 최적화](tech/frontend/monorepo/monorepo-bundle-size.md)
     * [\[WIP\] Monorepo 2년차, 효율적으로 사용하기](tech/frontend/monorepo/monorepo-experience.md)
   * [Form의 개념, 내가 사용한 방법](problemsolver/tech/frontend/form/README.md)
     * [Web에서의 Form이란?](problemsolver/tech/frontend/form/web-form.md)
