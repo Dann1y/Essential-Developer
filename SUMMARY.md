@@ -29,6 +29,7 @@
   * [성능 최적화](tech/web/undefined/README.md)
     * [Frontend 성능 최적화](tech/web/undefined/frontend.md)
 * [Frontend](problemsolver/tech/frontend/README.md)
+  * [\[WIP\] Image 최적화 전략](tech/frontend/wip-image.md)
   * [Monorepo](tech/frontend/monorepo/README.md)
     * [\[WIP\] Monorepo 2년차, 효율적으로 사용하기](tech/frontend/monorepo/monorepo-experience.md)
   * [Form의 개념, 내가 사용한 방법](problemsolver/tech/frontend/form/README.md)
