@@ -27,7 +27,7 @@ Frontend 개발자 **이대훈**입니다.
 
 ### 최근 작성한 글 바로가기 👇🏻
 
-* [next-babel-swc-compiler.md](tech/frontend/transpiler/next-babel-swc-compiler.md "mention")
-* [javascript-language-engine-timing.md](tech/javascript/javascript-language-engine-timing.md "mention")
-* [babel-polyfill.md](tech/frontend/transpiler/babel-polyfill.md "mention")
+* [next-babel-swc-compiler.md](frontend/compiler/next-babel-swc-compiler.md "mention")
+* [javascript-language-engine-timing.md](javascript/javascript-language-engine-timing.md "mention")
+* [babel-polyfill.md](frontend/compiler/babel-polyfill.md "mention")
 * [2023.08..md](memoir/2023/2023.08..md "mention")
