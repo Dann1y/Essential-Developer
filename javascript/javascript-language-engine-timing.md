@@ -14,7 +14,7 @@ description: 2023.09.02.
 
 
 
-<figure><img src="../../.gitbook/assets/image.png" alt="" width="563"><figcaption><p><a href="https://inprogrammer.com/high-level-vs-low-level/">source</a></p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2).png" alt="" width="563"><figcaption><p><a href="https://inprogrammer.com/high-level-vs-low-level/">source</a></p></figcaption></figure>
 
 ### Compiler란?
 
@@ -30,7 +30,7 @@ description: 2023.09.02.
 
 ### Javascript V8 엔진 동작 원리
 
-<figure><img src="../../.gitbook/assets/1.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/1.gif" alt=""><figcaption></figcaption></figure>
 
 1. 기본적으로 Javascript는 HTML parser가 script 태그를 마주치면 코드는 network, cache, service worker로부터 **로드를 시도**합니다.
    * response에 요청했던 스크립트를 Byte stream으로 받습니다.
@@ -38,7 +38,7 @@ description: 2023.09.02.
 
 
 
-<figure><img src="../../.gitbook/assets/2.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/2.gif" alt=""><figcaption></figcaption></figure>
 
 2. Byte stream decoder가 디코딩된 byte stream로 부터 **token을 생성**합니다. (Tokenizing)
    * 여기서 생성된 토큰은 Parser로 보내집니다. (Parsing)
@@ -48,13 +48,13 @@ description: 2023.09.02.
 
 
 
-<figure><img src="../../.gitbook/assets/3.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/3.gif" alt=""><figcaption></figcaption></figure>
 
 3. Parser는 token을 기반으로 node를 생성하고 이를 사용하여 **AST(추상 구문 트리)가 생성**됩니다.
 
 
 
-<figure><img src="../../.gitbook/assets/4.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/4.gif" alt=""><figcaption></figcaption></figure>
 
 4. **Interpreter**가 AST를 읽고 byte code로 변환합니다.
    * 변환이 모두 끝나면 메모리 공간을 정리하기 위해 AST는 삭제 됩니다.
@@ -62,7 +62,7 @@ description: 2023.09.02.
 
 
 
-<figure><img src="../../.gitbook/assets/5.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/5.gif" alt=""><figcaption></figcaption></figure>
 
 5. **Profiler**가 자주 사용된 코드와 데이터 유형을 관찰하여 type feedback을 생성하고 Optimizing compiler(최적화 컴파일러)로 전송합니다.
    * Optimizing compiler가 가장 최적화된 코드로 이를 **Compile**합니다.
@@ -90,7 +90,7 @@ description: 2023.09.02.
 
 ## 3. Timing
 
-<figure><img src="../../.gitbook/assets/image (18).png" alt=""><figcaption><p>Compile &#x26; Runtime (<a href="https://medium.jonasbandi.net/angular-vs-react-compilers-45b279a8f571">source</a>)</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption><p>Compile &#x26; Runtime (<a href="https://medium.jonasbandi.net/angular-vs-react-compilers-45b279a8f571">source</a>)</p></figcaption></figure>
 
 ### Buildtime
 

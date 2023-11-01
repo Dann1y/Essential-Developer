@@ -19,7 +19,7 @@ Iframe과 통신하며 겪은 문제를 풀어나가며 겪은 고민과 해결 
 
 ### 1. iframe이 불러와져야 뭐라도 하지..
 
-<figure><img src="../../../.gitbook/assets/image (5) (1).png" alt=""><figcaption><p><a href="https://stackoverflow.com/questions/66463781/how-do-you-stop-an-iframe-from-saying-site-refused-to-connect">https://stackoverflow.com/questions/66463781/how-do-you-stop-an-iframe-from-saying-site-refused-to-connect</a></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1).png" alt=""><figcaption><p><a href="https://stackoverflow.com/questions/66463781/how-do-you-stop-an-iframe-from-saying-site-refused-to-connect">https://stackoverflow.com/questions/66463781/how-do-you-stop-an-iframe-from-saying-site-refused-to-connect</a></p></figcaption></figure>
 
 iframe을 불러올 때 iframe의 도메인이 연결을 거부하는 상황이 있었습니다.
 
@@ -35,7 +35,7 @@ X-Frame-Options가 sameorigin이었음에도 위 문제가 발생하여 iframe�
   * 따라서 X-Frame-Options로 같은 도메인, 혹은 허용 자체를 하지 않음으로써 이러한 취약점을 보완할 수 있습니다.
 * [**Clickjacking** ](https://en.wikipedia.org/wiki/Clickjacking)방지
   * 축구를 좋아해서 하이재킹에 대한 개념을 알고 있었기 때문에 이름만으로 무엇을 방지하는지 유추할 수 있었습니다.
-  * ![](<../../../.gitbook/assets/image (2) (1) (1) (1).png>)
+  * ![](<../../.gitbook/assets/image (2) (1) (1) (1) (1).png>)
   * 투명 레이어 위에 다른 페이지를 로드하여 사용자에게 보이는 것과 실제 동작하는 것이 다른 것을 방지합니다.
   * 사이트 내 콘텐츠들이 다른 사이트에 포함되지 않도록 X-Frame-Options로 해결할 수 있기 때문입니다.
 
@@ -70,7 +70,7 @@ DOM 문서를 가리키는 Window 객체에는 [**postMessage**](https://develop
 
 
 
-<figure><img src="../../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
 따라서 저는 이렇게 문제를 풀었습니다.
 
