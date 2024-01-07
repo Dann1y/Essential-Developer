@@ -37,11 +37,6 @@
 
 * [\[Javascript\] Language, Engine, Timing에 대하여](javascript/javascript-language-engine-timing.md)
 
-## ⤴ Growth Moment <a href="#growthmoment" id="growthmoment"></a>
-
-* [멍청한 질문이라도 던져야한다](growthmoment/stupid-question/README.md)
-  * [gitbook image resize질문](growthmoment/stupid-question/gitbook-image-resize.md)
-
 ## 🤔 회고록 <a href="#memoir" id="memoir"></a>
 
 * [2021](memoir/2021/README.md)
@@ -60,8 +55,3 @@
 ## 🫂 후기 <a href="#experience" id="experience"></a>
 
 * [2023 인프콘](experience/2023.md)
-
-## 📚 book
-
-* [원칙 - 레이 달리오](book/undefined.md)
-* [악인론 - 손수현](book/undefined-1.md)
