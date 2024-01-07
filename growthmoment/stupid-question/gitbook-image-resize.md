@@ -4,19 +4,19 @@ description: 2023.05.07.
 
 # gitbook image resize질문
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
 [**4월 회고록**](https://docs.essential-dev.blog/memoir/2023/2023.04.#blog)에서 작성한 것처럼 gitbook의 단점이 붙여넣기한 이미지의 사이즈를 조절할 수 없다는 것이 있었다.
 
 나는 기존 유저들이 대체 어떻게 이 불편함을 참고 사용하는지 이해할 수 없었고 [**github discussion**](https://github.com/orgs/GitbookIO/discussions/181)에 질문을 남겼다.
 
-<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (27).png" alt=""><figcaption></figcaption></figure>
 
 원래는 이메일로 full size 이미지만 지원한다는 답장을 받았고 단점이 있지만 카테고리 나뉘는게 너무 편하고 좋아서 사용하려고 했다.
 
 3주 정도 기다리다가 메일이 하나 와서 확인해보니 이미지를 조절할수 있는 기능이 추가되었다는 소식을 받았다.
 
-<figure><img src="../../.gitbook/assets/image (8).png" alt="" width="396"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (28).png" alt="" width="396"><figcaption></figcaption></figure>
 
 **내가 여기서 느낀건 3가지이다.**
 

@@ -32,7 +32,7 @@ Be the Idiot
 
 ### 개발할 때 했던 것
 
-<figure><img src="../../.gitbook/assets/image (2) (2).png" alt=""><figcaption><p>stackoverflow</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (20).png" alt=""><figcaption><p>stackoverflow</p></figcaption></figure>
 
 {% embed url="https://github.com/vercel/next.js/discussions/20993" %}
 2021.01월에 했던 질문

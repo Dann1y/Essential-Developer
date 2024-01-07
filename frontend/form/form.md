@@ -20,7 +20,7 @@ description: 2023.05.03.
 
 Input이 많아지는만큼 Form의 코드 수도 증가합니다. 증가한 코드 수는 안 그래도 복잡한 Input을 더욱 파악하기 어렵게 만듭니다. 따라서 이를 해결하기 위해서 **중복되는 역할을 추상화**한다는 개념으로 접근해보았습니다.
 
-<figure><img src="../../../../.gitbook/assets/image (5) (2).png" alt=""><figcaption><p>google form example</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (22).png" alt=""><figcaption><p>google form example</p></figcaption></figure>
 
 이 HTML 위젯은 label과 input, 크게 2가지로 볼 수 있습니다.
 
@@ -229,7 +229,7 @@ react-hook-form 공식문서의 코드를 응용하여 예시 코드를 작성�
     \
 
 
-    <figure><img src="../../../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
 
     [FormProvider](https://react-hook-form.com/api/usecontroller/controller/)사용하는 경우 control은 optional이지만 앞서 말씀드린 Controller의 name의 type을 관리하기 위하여 저는 control을 사용하였습니다.\
     \

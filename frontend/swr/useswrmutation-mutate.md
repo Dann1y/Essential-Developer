@@ -14,7 +14,7 @@ useSWRMutation으로 Mutate를 추상화한 경험에 대해서 공유하겠습�
 
 Next.js에서 Data fetching을 하면서 GET 요청에 대해서는 useSWR로 추상화하여 코드 수를 줄이고 역할을 분리했습니다. 그러나 나머지 POST, DELETE, PUT 과 같은 mutate 요청에 대해서는 여전히 매번 긴 코드를 작성해야했습니다.
 
-<figure><img src="../../../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption><p>mutate의 의미</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (35).png" alt=""><figcaption><p>mutate의 의미</p></figcaption></figure>
 
 [**OpenAPI generator가 적용**](https://docs.essential-dev.blog/tech/web/http/http-openapi-generator)되어있어 사용성에서 큰 문제는 없었지만 여러 mutate 요청을 하나의 컴포넌트에서 하다보면 코드가 길어질 수 밖에 없었습니다.
 

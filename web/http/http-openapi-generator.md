@@ -90,7 +90,7 @@ package.json에 `build-api` 라는 scripts를 추가하여 커맨드를 입력�
 
 이렇게 설정하고 커맨드를 입력하면 (yarn build-api) 자동으로 generate된 API들의 Factory들이 나오는데 이 안에 API가 함수로 추상화 되어있습니다. 이를 활용하기 위해서 약간의 가공이 필요합니다.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption><p>generate를 하게 되면 자동으로 생성</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption><p>generate를 하게 되면 자동으로 생성</p></figcaption></figure>
 
 ### Setting
 

@@ -14,7 +14,7 @@ description: 2023.09.02.
 
 
 
-<figure><img src="../.gitbook/assets/image (2).png" alt="" width="563"><figcaption><p><a href="https://inprogrammer.com/high-level-vs-low-level/">source</a></p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3).png" alt="" width="563"><figcaption><p><a href="https://inprogrammer.com/high-level-vs-low-level/">source</a></p></figcaption></figure>
 
 ### Compiler란?
 
@@ -90,7 +90,7 @@ description: 2023.09.02.
 
 ## 3. Timing
 
-<figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption><p>Compile &#x26; Runtime (<a href="https://medium.jonasbandi.net/angular-vs-react-compilers-45b279a8f571">source</a>)</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (49).png" alt=""><figcaption><p>Compile &#x26; Runtime (<a href="https://medium.jonasbandi.net/angular-vs-react-compilers-45b279a8f571">source</a>)</p></figcaption></figure>
 
 ### Buildtime
 

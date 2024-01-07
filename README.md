@@ -15,11 +15,11 @@ layout:
 
 # 📈 Who I am
 
-안녕하세요!
+안녕하세요! Frontend 개발자 **이대훈**입니다.
 
-Frontend 개발자 **이대훈**입니다.
-
-어려움을 겪으면 문제의 **본질적인 해결 방법**을 고민하고 문제를 풀어나가며 이 과정에서 겪은 경험을 글로 정리하는걸 좋아해서 이 블로그에 서술하려고 합니다.
+* 3년 차 Frontend 개발자로 크리에이터와 시청자를 연결하는 MAU 30만의 후원 플랫폼 트윕에 기여하고 있습니다.
+* 제품이 가진 비효율을 개선하고 사용자의 문제를 해결하기 위해 깊게 몰입하는 것을 좋아합니다.
+* 불확실한 미래의 폭넓은 문제를 해결하는 사람이 되기 위해 노력하고 즐기며 과정을 글로 기록하는 것을 좋아합니다.
 
 
 
@@ -27,7 +27,7 @@ Frontend 개발자 **이대훈**입니다.
 
 ### 최근 작성한 글 바로가기 👇🏻
 
+* [package-manager.md](frontend/monorepo/package-manager.md "mention")
+* [2023.10.-3-..md](memoir/2023/2023.10.-3-..md "mention")
 * [next-babel-swc-compiler.md](frontend/compiler/next-babel-swc-compiler.md "mention")
 * [javascript-language-engine-timing.md](javascript/javascript-language-engine-timing.md "mention")
-* [babel-polyfill.md](frontend/compiler/babel-polyfill.md "mention")
-* [2023.08..md](memoir/2023/2023.08..md "mention")
