@@ -21,17 +21,13 @@
 
 ## Web
 
-* [SEO](web/seo/README.md)
-  * [SEO, 그리고 essential-dev 검색엔진 최적화하기](web/seo/seo-essential-dev.md)
 * [iframe](web/iframe/README.md)
   * [웹 안에 또 다른 웹, iframe과 실시간 소통을 하며 겪은 문제](web/iframe/iframe.md)
 * [HTTP 통신, 그리고 나의 경험](web/http/README.md)
   * [HTTP 개요](web/http/http.md)
   * [HTTP 통신, OpenAPI Generator로 추상화하기](web/http/http-openapi-generator.md)
-* [RESTful API, 그리고 나의 경험](web/restful-api/README.md)
+* [RESTful API](web/restful-api/README.md)
   * [What is REST?](web/restful-api/what-is-rest.md)
-* [성능 최적화](web/undefined/README.md)
-  * [Frontend 성능 최적화](web/undefined/frontend.md)
 
 ## Javascript
 
