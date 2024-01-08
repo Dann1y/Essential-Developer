@@ -10,7 +10,7 @@ description: 2024.01.07
 
 * Turborepo + yarn berry (nodeLinker: node\_modules)로 구성된 모노레포에 의존성 설치 시간이 오래 걸렸습니다. (1m 40s)
 * A workspace의 package.json에 작성되어있는 의존성이 B workspace에서도 사용 가능한 현상이 있었습니다.
-* docker build를 하기 위해 workspace를 참조하는 과정이 다소 복잡했고, layer caching을 구성하기 어려운 구조였습니다.
+* docker build를 하기 위해 workspace를 COPY 하는 과정이 하드 코딩되어 변경에 취약했습니다.
 * ci에 별도의 caching이 적용 되어있지 않아 매번 새롭게 빌드하고 시간이 오래걸리는 비효율적인 과정이 있었습니다.
 
 
@@ -171,7 +171,7 @@ build할 때는 input → build → output을 거치기 때문에 inputs, output
 "build": "turbo run build --cache-dir=.turbo"
 ```
 
-turbo build 할 때 cache directory를 root로 빼주었습니다. 기본 값은 `./node_modules/.cache/turbo` 인데 node\_modules는 머신마다 새롭게 설치해야하기 때문에 `.turbo` 를 루트에 두고 build 스탭 전에 이전에 캐싱된 output file을 확인하라고 공식문서에서 말합니다.
+turbo build 할 때 cache directory를 root로 빼주었습니다. 기본 값은 `./node_modules/.cache/turbo` 인데 node\_modules는 머신마다 새롭게 설치해야하기 때문에 `.turbo` 를 루트에 두고 build 스탭 전에 이전에 캐싱된 output file을 확인하라고 공식문서에서 권장합니다.
 
 `2. Configure your github pipeline with a step which utilizes the actions/cache@v3 action before the build steps of your ci file.`
 

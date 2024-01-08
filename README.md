@@ -1,5 +1,5 @@
 ---
-description: Problem solver. focused on the essential problems,
+description: Problem solver. focused on the essential problems.
 layout:
   title:
     visible: true
