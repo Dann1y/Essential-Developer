@@ -69,7 +69,9 @@ Node 버전을 기존 16에서 20으로 업데이트 했는데 storybook에서 
 
 `A great bonus of this layout is that only packages that are really in the dependencies are accessible. With a flattened` node\_modules `structure, all hoisted packages are accessible.`
 
-적용은 그리 어렵지 않았습니다. 기존 repository에 있는 yarn 관련된 파일과 코드를 삭제하고 pnpm으로 대체했습니다. 부끄럽지만 기존에 A workspace에 설치된 의존성이 hoisting되어 B에서도 사용 가능한 문제가 pnpm을 적용하자 드러났고 사용은 되지만 설치 되지 않은 의존성들을 모두 설치해주었습니다.
+
+
+적용은 그리 어렵지 않았습니다. 기존 repository에 있는 **yarn 관련된 파일과 코드를 삭제하고 pnpm으로 대체**했습니다. 부끄럽지만 기존에 A workspace에 설치된 의존성이 hoisting되어 B에서도 사용 가능한 문제가 pnpm을 적용하자 드러났고 사용은 되지만 설치 되지 않은 의존성들을 모두 설치해주었습니다.
 
 이 때 매번 설치하고 빌드 되는지 확인하고를 반복하다가 vscode에서 파일이 열려있지 않아도[ TS 에러를 일괄로 보여주는거 없나?](https://stackoverflow.com/questions/55201424/how-to-get-vscode-to-show-typescript-errors-for-files-not-open-in-the-editor) 하고 궁금증이 생겨 검색해보니 다행히 있었습니다.
 
@@ -88,9 +90,13 @@ Node 버전을 기존 16에서 20으로 업데이트 했는데 storybook에서 
 * PR에서 build가 성공하는지 확인하는 build 결과 확인용 github action
 * 실제 ci/cd 파이프라인을 타는 배포용 github action
 
+
+
 pnpm을 최종 배포하기 전까지는 pnpm 코드가 파이프라인을 타면 안 됐고 여기선 github action workflow에서 의존성을 설치하고 빌드하기 때문에 build 결과 확인용 github action에 먼저 pnpm을 적용했습니다.
 
 action에서 install 시간이 줄어든 것을 확인하고 나머지 ci/cd 파이프라인도 별도의 dockerfile과 workflow를 구성하여 기존 시스템에는 영향이 없도록 테스트 환경에서 적용했습니다.
+
+
 
 이 때 확인한 내용은 다음과 같습니다.
 
@@ -107,8 +113,6 @@ action에서 install 시간이 줄어든 것을 확인하고 나머지 ci/cd 파
 
 
 ### 3-2. 해결 과정
-
-#### 3-2-1. Build 결과 확인용 action
 
 **pnpm install caching**
 
@@ -128,12 +132,13 @@ action에서 install 시간이 줄어든 것을 확인하고 나머지 ci/cd 파
 
 <figure><img src="../../.gitbook/assets/pnpm cache.png" alt=""><figcaption></figcaption></figure>
 
+
+
 **Turborepo remote caching**
 
 [Turbo caching](https://turbo.build/repo/docs/core-concepts/caching)
 
-turbo는 기본적으로 매 빌드 시 캐싱 파일을 먼저 확인합니다.
-
+turbo는 기본적으로 매 빌드 시 캐싱 파일을 먼저 확인합니다.\
 build할 때는 input → build → output을 거치기 때문에 inputs, outputs 각각 파일이 있습니다.
 
 1. turbo는 기본적으로 input 파일들을 계산하고 이를 hash로 변환합니다.
@@ -152,9 +157,7 @@ build할 때는 input → build → output을 거치기 때문에 inputs, output
 
 로컬에서 개발할 때는 같은 내용을 캐싱하는 이점을 활용할 수 있지만 ci 단계에서 다른 머신으로 빌드할 때는 추가적인 조치가 필요합니다. 별도의 self hosted 머신을 사용한다면 모르겠지만, ci가 실행될 때마다 다른 머신에서 돌게 되고 캐싱된 값을 local file system에 저장하는 turbo는 매번 새로운 빌드를 수행하게 될 것 입니다.
 
-그래서 remote 환경에서 turbo caching의 이점을 살리려면 추가적인 조치가 필요합니다. [turbo remote caching](https://turbo.build/repo/docs/core-concepts/remote-caching) 기능을 활용하는 방법이 있습니다.
-
-저희는 github action/cache를 활용해서 github 저장소에 저장하는 방법을 선택했습니다. 다음은 [공식문서](https://turbo.build/repo/docs/ci/github-actions)에 나와있는 핵심 코드입니다.
+그래서 remote 환경에서 turbo caching의 이점을 살리려면 추가적인 조치가 필요합니다. [turbo remote caching](https://turbo.build/repo/docs/core-concepts/remote-caching) 기능을 활용하는 방법이 있습니다. 저희는 github action/cache를 활용해서 github 저장소에 저장하는 방법을 선택했습니다. 다음은 [공식문서](https://turbo.build/repo/docs/ci/github-actions)에 나와있는 핵심 코드입니다.
 
 ```yaml
 - name: Cache turbo build setup
@@ -173,9 +176,11 @@ build할 때는 input → build → output을 거치기 때문에 inputs, output
 
 turbo build 할 때 cache directory를 root로 빼주었습니다. 기본 값은 `./node_modules/.cache/turbo` 인데 node\_modules는 머신마다 새롭게 설치해야하기 때문에 `.turbo` 를 루트에 두고 build 스탭 전에 이전에 캐싱된 output file을 확인하라고 공식문서에서 권장합니다.
 
-`2. Configure your github pipeline with a step which utilizes the actions/cache@v3 action before the build steps of your ci file.`
+`Configure your github pipeline with a step which utilizes the actions/cache@v3 action before the build steps of your ci file.`
 
 <figure><img src="../../.gitbook/assets/turbo cache.png" alt=""><figcaption></figcaption></figure>
+
+
 
 #### 3-2-2. ci/cd
 
@@ -183,7 +188,7 @@ turbo build 할 때 cache directory를 root로 빼주었습니다. 기본 값은
 
 기존에는 monorepo의 A 서비스를 빌드하기 위해서 dockerfile에서 직접 A서비스를 빌드하는데 필요한 의존성이나 소스코드를 COPY 했었습니다. 하지만 이럴 경우에 구조를 바꾸고 싶은 경우 dockerfile이 hard coding 되어있어 의존성이 하나 생기고 turborepo의 이점을 사용하지 못한다는 단점이 있었습니다.
 
-이런 문제를 해결하기 위해 turbo cli의 prune 기능을 활용했습니다. 구성한 dockerfile을 stage별로 설명해보습니다.
+이런 문제를 해결하기 위해 turbo cli의 prune 기능을 활용했습니다. 구성한 dockerfile을 stage별로 설명 드리겠습니다.
 
 1. ```docker
    FROM node:20-alpine AS alpine
@@ -219,7 +224,16 @@ turbo build 할 때 cache directory를 root로 빼주었습니다. 기본 값은
    1. builder 스테이지입니다.
    2. Docker 내에서 작업 디렉토리를 /app으로 설정합니다.
    3. 모든 파일을 /app 으로 복사합니다.
-   4. [turbo prune](https://turbo.build/repo/docs/reference/command-line-reference/prune) 2. monorepo 안에서 scope로 지정된 workspace에서 빌드시 필요한 소스코드만 가져옵니다. 1. 따라서 이전처럼 특정 서비스의 directory를 일일히 복사할 필요가 없습니다. 3. root의 lockfile에서 prune된 workspace에 사용되는 의존성들만 있는 새로운 lockfile이 생성됩니다. 1. 이 서비스에선 `pnpm-lock.yaml` 4. --docker option 1. docker layer caching을 사용하기 쉽도록 output folder가 pruned workspace로 변경됩니다. 2. json, full 폴더가 생기게 되는데요, 1. json: pruned workspace에서 필요한 package.json들이 있습니다. 2. full: pruned workspace에서 빌드시 필요한 소스코드들이 있습니다.
+   4. [turbo prune](https://turbo.build/repo/docs/reference/command-line-reference/prune)
+      1. monorepo 안에서 scope로 지정된 workspace에서 빌드시 필요한 소스코드만 가져옵니다.
+      2. 따라서 이전처럼 특정 서비스의 directory를 일일히 복사할 필요가 없습니다.
+      3. root의 lockfile에서 prune된 workspace에 사용되는 의존성들만 있는 새로운 lockfile이 생성됩니다.&#x20;
+         1. 이 서비스에선 `pnpm-lock.yaml`
+   5. \--docker option
+      1. docker layer caching을 사용하기 쉽도록 output folder가 pruned workspace로 변경됩니다.
+      2. json, full 폴더가 생기게 되는데요,
+         1. json: pruned workspace에서 필요한 package.json들이 있습니다.
+         2. full: pruned workspace에서 빌드시 필요한 소스코드들이 있습니다.
 4. ```docker
    FROM base AS installer
    WORKDIR /app
@@ -277,6 +291,8 @@ turbo build 할 때 cache directory를 root로 빼주었습니다. 기본 값은
    7. 정상적으로 실행된 것을 볼 수 있습니다\~!
       1. ![](<../../.gitbook/assets/docker run (1).png>)
 
+
+
 **Action Docker layer caching**
 
 배포를 위한 빌드에 docker image build를 사용한다면 github action에서 설정할 수 있는 방법이 있습니다. [docker/build-push-action](https://docs.docker.com/build/cache/backends/gha/#using-dockerbuild-push-action) 플러그인을 이용하는 방법입니다.
@@ -288,7 +304,7 @@ cache-to: type=gha,mode=max
 
 이 플러그인은 BuildKit이라는 툴킷의 buildx 명령을 활용합니다. BuildKit에서 [github action에서 캐싱](https://github.com/moby/buildkit?tab=readme-ov-file#github-actions-cache-experimental)을 걸 수 있는 방법이 나와있지만[ 아직 실험적인 기능](https://docs.docker.com/build/ci/github-actions/cache/#github-cache)이라고 합니다. (22년도에도 실험적이라고 했는데 언제까지.. ㅠ)
 
-앞선 pnpm과 turbo가 하나의 artifact가 나오는 반면 docker는 layer 별 캐싱을 해서인지 여러개의 artifact가 생기고 사이즈도 모두 다릅니다.
+앞선 pnpm과 turbo가 하나의 artifact가 나오는 반면 docker는 layer 별 캐싱을 해서인지 여러개의 artifact가 생기고 사이즈도 모두 다릅니다. (이 방법이 최선일지에 대해서는 고민을 더 해봐야할 것 같습니다.)
 
 <figure><img src="../../.gitbook/assets/docker layer cache.png" alt=""><figcaption></figcaption></figure>
 
@@ -319,9 +335,9 @@ cache-to: type=gha,mode=max
     * 의존성 설치 시간 단축
       * **1m 40s → 40s (60% 감소)**
 
+
+
 따라서 정리해보면 다음과 같습니다.
-
-
 
 * build 결과 확인용 action
   * 의존성 설치시간은 **60%** 감소했습니다.
