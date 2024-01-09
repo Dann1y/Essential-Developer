@@ -4,7 +4,7 @@ description: 2024.01.07
 
 # Monorepo, 패키지 매니저를 변경하며 해결한 문제들
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 ## 문제
 
@@ -139,6 +139,8 @@ action에서 install 시간이 줄어든 것을 확인하고 나머지 ci/cd 파
 
 <figure><img src="../../.gitbook/assets/pnpm cache.png" alt=""><figcaption></figcaption></figure>
 
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
 
 
 **Turborepo remote caching**
@@ -183,7 +185,7 @@ turbo build 할 때 cache directory를 root로 빼주었습니다. 기본 값은
 
 <figure><img src="../../.gitbook/assets/turbo cache.png" alt=""><figcaption></figcaption></figure>
 
-
+<figure><img src="../../.gitbook/assets/turbo cache 테스트.png" alt=""><figcaption><p><strong>13m 33s</strong>(cold start) -> <strong>4m 21s</strong>(1 workspace run) -> <strong>1m 51s</strong>(FULL_TURBO)</p></figcaption></figure>
 
 #### 3-2-2. ci/cd
 
@@ -315,7 +317,7 @@ cache-to: type=gha,mode=max
 
 <figure><img src="../../.gitbook/assets/docker layer cache 2 (1).png" alt=""><figcaption></figcaption></figure>
 
-
+<figure><img src="../../.gitbook/assets/docker layer caching.png" alt=""><figcaption><p>6m 22s -> 1m 11s (Full Cached)</p></figcaption></figure>
 
 
 
@@ -323,7 +325,11 @@ cache-to: type=gha,mode=max
 
 * **build 결과 확인용 action**
   * pnpm install caching + 의존성 설치 시간 단축
-    * **1m 40s → 40s (60% 감소)**
+    * 캐싱 된 artifact가 있을 경우
+      * install: **1s**
+      * pnpm cache setup: **11s**
+      * install dependencies: **18s**
+    * **1m 40s → 30s (70% 감소)**
   * turborepo remote caching
     * 이 build-repo는 기본적으로 모든 workspace를 빌드합니다.
     * cold start: **13m 33s**
@@ -343,10 +349,10 @@ cache-to: type=gha,mode=max
 따라서 정리해보면 다음과 같습니다.
 
 * build 결과 확인용 action
-  * 의존성 설치시간은 **60%** 감소했습니다.
+  * 의존성 설치시간이 **70%** 감소했습니다.
   * workspace 1개만 빌드할 경우 **68%**, FULL\_TURBO일 경우 최대 **87%** 감소했습니다.
 * ci/cd
-  * 의존성 설치시간은 **60%** 감소했습니다.
+  * 의존성 설치시간이 **60%** 감소했습니다.
   * docker layer caching이 적용되어 **60%** 감소했습니다.
 
 
@@ -357,7 +363,7 @@ cache-to: type=gha,mode=max
 
 23년에 했던 경험을 바탕으로 기존 모노레포의 비효율을 개선하기 위해 패키지 매니저를 변경하고 ci에 캐싱을 적용하여 최적화를 진행했습니다. 그 결과 눈에 띄는 개선점이 있었고, 이 과정에서 monorepo 생태계, dockerize, github action ci 등 여러 방면에 걸쳐 지식이 한층 늘어난 것 같습니다.
 
-개선 결과는 모노레포의 구성과 환경에 따라 달라질 수 있으며 "이걸 적용하면 반드시 이 정도의 개선이 있다"를 의미하지 않습니다.&#x20;
+개선 결과는 모노레포의 구성과 환경에 따라 달라질 수 있으며 `이걸 적용하면 반드시 이 정도의 개선이 있다`를 의미하지 않습니다.&#x20;
 
 마음 한편에 남아있던 문제를 해결할 수 있어서 좋았습니다. 감사합니다!
 
