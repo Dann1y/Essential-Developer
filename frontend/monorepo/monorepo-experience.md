@@ -6,6 +6,8 @@ description: 2023.07.16.
 
 {% hint style="info" %}
 이번 변경은 시도에 그쳤습니다. 최종 변경은 다음 화를 확인해주세요!
+
+[package-manager.md](package-manager.md "mention")
 {% endhint %}
 
 ## 생각의 과정
