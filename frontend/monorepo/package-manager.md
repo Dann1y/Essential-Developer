@@ -72,7 +72,7 @@ pnpm은 [**symbolic link**](https://pnpm.io/symlinked-node-modules-structure)를
 
 따라서 공식 문서에서 언급된 바와 같이 **hoisting 되어 flattern한 node\_modules에서 발생했던 유령 의존성 문제를 해결**할 수 있기 때문에 저희 팀에 맞는 방향이라 생각하여 적용했습니다.
 
-`A great bonus of this layout is that only packages that are really in the dependencies are accessible. With a flattened node_modules structure, all hoisted packages are accessible.`
+> A great bonus of this layout is that only packages that are **really in the dependencies are accessible.** With a flattened node\_modules structure, all hoisted packages are accessible.
 
 
 
@@ -133,7 +133,9 @@ action에서 install 시간이 줄어든 것을 확인하고 나머지 ci/cd 파
 		${{ runner.os }}-pnpm-store-
 ```
 
-가장 핵심이 되는 내용인데요, 결국 github [action/cache](https://github.com/actions/cache)를 활용하여 pnpm-lock.yaml 파일이 변경되지 않았다면 (cache hitted!) 캐싱된 node\_modules를 사용하고 캐싱된 값이 없다면 의존성을 새로 설치합니다. 이는 pnpm 뿐만 아니라 다른 패키지 매니저를 사용해도 action/cache 플러그인을 활용하여 동일하게 (npm이라면 package-lock.json를 hash) 사용 가능한 것으로 이해하고 있습니다.
+> 가장 핵심이 되는 내용인데요, 결국 github [action/cache](https://github.com/actions/cache)를 활용하여 pnpm-lock.yaml 파일이 변경되지 않았다면 (cache hitted!) 캐싱된 node\_modules를 사용하고 캐싱된 값이 없다면 의존성을 새로 설치합니다.
+
+이는 pnpm 뿐만 아니라 다른 패키지 매니저를 사용해도 action/cache 플러그인을 활용하여 동일하게 (npm이라면 package-lock.json를 hash) 사용 가능한 것으로 이해하고 있습니다.
 
 <figure><img src="../../.gitbook/assets/pnpm cache.png" alt=""><figcaption></figcaption></figure>
 
@@ -141,9 +143,7 @@ action에서 install 시간이 줄어든 것을 확인하고 나머지 ci/cd 파
 
 **Turborepo remote caching**
 
-[Turbo caching](https://turbo.build/repo/docs/core-concepts/caching)
-
-turbo는 기본적으로 매 빌드 시 캐싱 파일을 먼저 확인합니다.\
+[turbo](https://turbo.build/repo/docs/core-concepts/caching)는 기본적으로 매 빌드 시 캐싱 파일을 먼저 확인합니다.\
 build할 때는 input → build → output을 거치기 때문에 inputs, outputs 각각 파일이 있습니다.
 
 1. turbo는 기본적으로 input 파일들을 계산하고 이를 hash로 변환합니다.
@@ -158,9 +158,7 @@ build할 때는 input → build → output을 거치기 때문에 inputs, output
 7. build를 수행하는 대신 해당 outputs를 replay합니다.
    1. ![](<../../.gitbook/assets/turbo cache hit (1).png>)
 
-
-
-로컬에서 개발할 때는 같은 내용을 캐싱하는 이점을 활용할 수 있지만 ci 단계에서 다른 머신으로 빌드할 때는 추가적인 조치가 필요합니다. 별도의 self hosted 머신을 사용한다면 모르겠지만, ci가 실행될 때마다 다른 머신에서 돌게 되고 캐싱된 값을 local file system에 저장하는 turbo는 매번 새로운 빌드를 수행하게 될 것 입니다.
+> 로컬에서 개발할 때는 같은 내용을 캐싱하는 이점을 활용할 수 있지만, ci 단계에서 다른 머신으로 빌드할 때는 추가적인 조치가 필요합니다. 별도의 self hosted 머신을 사용한다면 모르겠지만, ci가 실행될 때마다 다른 머신에서 돌게 되고 캐싱된 값을 local file system에 저장하는 turbo는 매번 새로운 빌드를 수행하게 될 것 입니다.
 
 그래서 remote 환경에서 turbo caching의 이점을 살리려면 추가적인 조치가 필요합니다. [turbo remote caching](https://turbo.build/repo/docs/core-concepts/remote-caching) 기능을 활용하는 방법이 있습니다. 저희는 github action/cache를 활용해서 github 저장소에 저장하는 방법을 선택했습니다. 다음은 [공식문서](https://turbo.build/repo/docs/ci/github-actions)에 나와있는 핵심 코드입니다.
 
@@ -179,9 +177,9 @@ build할 때는 input → build → output을 거치기 때문에 inputs, output
 "build": "turbo run build --cache-dir=.turbo"
 ```
 
-turbo build 할 때 cache directory를 root로 빼주었습니다. 기본 값은 `./node_modules/.cache/turbo` 인데 node\_modules는 머신마다 새롭게 설치해야하기 때문에 `.turbo` 를 루트에 두고 build 스탭 전에 이전에 캐싱된 output file을 확인하라고 공식문서에서 권장합니다.
+turbo build 할 때 cache directory를 root로 빼주었습니다. 기본 값은 `./node_modules/.cache/turbo` 인데 node\_modules는 머신마다 새롭게 설치해야하기 때문에 `.turbo` 를 루트에 두고 build 스탭 전에 이전에 캐싱된 output file을 확인하라고 권장합니다.
 
-`Configure your github pipeline with a step which utilizes the actions/cache@v3 action before the build steps of your ci file.`
+> Configure your github pipeline with a step which utilizes the actions/cache@v3 action before the build steps of your ci file.
 
 <figure><img src="../../.gitbook/assets/turbo cache.png" alt=""><figcaption></figcaption></figure>
 
@@ -193,7 +191,7 @@ turbo build 할 때 cache directory를 root로 빼주었습니다. 기본 값은
 
 기존에는 monorepo의 A 서비스를 빌드하기 위해서 dockerfile에서 직접 A서비스를 빌드하는데 필요한 의존성이나 소스코드를 COPY 했었습니다. 하지만 이럴 경우에 구조를 바꾸고 싶은 경우 dockerfile이 hard coding 되어있어 의존성이 하나 생기고 turborepo의 이점을 사용하지 못한다는 단점이 있었습니다.
 
-이런 문제를 해결하기 위해 turbo cli의 prune 기능을 활용했습니다. 구성한 dockerfile을 stage별로 설명 드리겠습니다.
+이런 문제를 해결하기 위해 **turbo cli의 prune** 기능을 활용했습니다. 구성한 dockerfile을 stage별로 설명 드리겠습니다.
 
 1. ```docker
    FROM node:20-alpine AS alpine
@@ -309,7 +307,7 @@ cache-to: type=gha,mode=max
 
 이 플러그인은 BuildKit이라는 툴킷의 buildx 명령을 활용합니다. BuildKit에서 [github action에서 캐싱](https://github.com/moby/buildkit?tab=readme-ov-file#github-actions-cache-experimental)을 걸 수 있는 방법이 나와있지만[ 아직 실험적인 기능](https://docs.docker.com/build/ci/github-actions/cache/#github-cache)이라고 합니다. (22년도에도 실험적이라고 했는데 언제까지.. ㅠ)
 
-앞선 pnpm과 turbo가 하나의 artifact가 나오는 반면 docker는 layer 별 캐싱을 해서인지 여러개의 artifact가 생기고 사이즈도 모두 다릅니다. (이 방법이 최선일지에 대해서는 고민을 더 해봐야할 것 같습니다.)
+> 앞선 pnpm과 turbo가 하나의 artifact가 나오는 반면 docker는 layer 별 캐싱을 해서인지 여러개의 artifact가 생기고 사이즈도 모두 다릅니다. (이 방법이 최선일지에 대해서는 고민을 더 해봐야할 것 같습니다.)
 
 <figure><img src="../../.gitbook/assets/docker layer cache.png" alt=""><figcaption></figcaption></figure>
 
@@ -357,11 +355,35 @@ cache-to: type=gha,mode=max
 
 ## 마무리
 
-23년에 했던 경험을 바탕으로 기존 모노레포의 비효율을 개선하기 위해 패키지 매니저를 변경하고 ci에 캐싱을 적용하여 최적화를 진행했습니다. 그 결과 눈의 띄는 개선점이 있었고, 이 과정에서 monorepo 생태계, dockerize, github action ci 등 여러 방면에 걸쳐 지식이 한층 늘어난 것 같습니다.
+23년에 했던 경험을 바탕으로 기존 모노레포의 비효율을 개선하기 위해 패키지 매니저를 변경하고 ci에 캐싱을 적용하여 최적화를 진행했습니다. 그 결과 눈에 띄는 개선점이 있었고, 이 과정에서 monorepo 생태계, dockerize, github action ci 등 여러 방면에 걸쳐 지식이 한층 늘어난 것 같습니다.
 
 개선 결과는 모노레포의 구성과 환경에 따라 달라질 수 있으며 "이걸 적용하면 반드시 이 정도의 개선이 있다"를 의미하지 않습니다.&#x20;
 
+마음 한편에 남아있던 문제를 해결할 수 있어서 좋았습니다. 감사합니다!
 
 
-마음 한 켠에 남아있던 문제를 해결할 수 있어서 좋았습니다. 감사합니다!
 
+
+
+## Reference
+
+* turbo pnp issue
+  * [https://github.com/vercel/turbo/issues/693](https://github.com/vercel/turbo/issues/693)
+* storybook node error
+  * [https://github.com/storybookjs/storybook/issues/19692](https://github.com/storybookjs/storybook/issues/19692)
+* pnpm
+  * [https://pnpm.io/symlinked-node-modules-structure](https://pnpm.io/symlinked-node-modules-structure)
+* vscode ts error
+  * [https://stackoverflow.com/questions/55201424/how-to-get-vscode-to-show-typescript-errors-for-files-not-open-in-the-editor](https://stackoverflow.com/questions/55201424/how-to-get-vscode-to-show-typescript-errors-for-files-not-open-in-the-editor)
+* github action cache
+  * [https://github.com/actions/cache](https://github.com/actions/cache)
+* turbo
+  * [https://turbo.build/repo/docs/core-concepts/caching](https://turbo.build/repo/docs/core-concepts/caching)
+  * [https://turbo.build/repo/docs/core-concepts/remote-caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
+  * [https://turbo.build/repo/docs/ci/github-actions](https://turbo.build/repo/docs/ci/github-actions)
+* docker
+  * [https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine](https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine)
+  * [https://github.com/moby/buildkit?tab=readme-ov-file#github-actions-cache-experimental](https://github.com/moby/buildkit?tab=readme-ov-file#github-actions-cache-experimental)
+  * [https://docs.docker.com/build/ci/github-actions/cache/#github-cache](https://docs.docker.com/build/ci/github-actions/cache/#github-cache)
+  * turbo pnpm + docker
+    * [https://github.com/vercel/turbo/issues/5462#issuecomment-1712229432](https://github.com/vercel/turbo/issues/5462#issuecomment-1712229432)
