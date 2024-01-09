@@ -21,11 +21,11 @@ description: 2024.01.07
 
 사실 모노레포를 최적화하는 시도는 이번이 3번째입니다. 23년 초 트윕 대시보드 프로젝트를 initialize 할 때 최 적화된 모노레포와 함께 구성하고 싶어서 유령 의존성을 제거하고 ci 단계에서 install 시간을 단축시키고자 yarn pnp + docker layer caching을 적용하려고 했습니다.
 
-그러나 첫 번째 시도는 실패했습니다. `nodeLinker: pnp` 를 설정하고 pnp를 사용하려고 했지만 turborepo에서 [pnp를 지원하지 않았습니다](https://github.com/vercel/turbo/issues/693).
+그러나 **첫 번째** 시도는 실패했습니다. `nodeLinker: pnp` 를 설정하고 pnp를 사용하려고 했지만 turborepo에서 [pnp를 지원하지 않았습니다](https://github.com/vercel/turbo/issues/693).
 
 
 
-두 번째는 turborepo에서 yarn pnp를 지원하지 않았기 때문에 yarn worksapce + pnp로 변경하는 시도를 했습니다. yarn workspace를 적용하고 pnp를 켰으며 이 과정에서 발생한 여러 가지 문제를 해결하여 결국 적용은 성공했습니다. node\_modules의 의존성이 모두 `.yarn/cache` 하위의 압축된 의존성으로 저장되고 pnp.js에서 이 내용을 참조할 수 있는 정보가 기록됩니다.
+**두 번째**는 turborepo에서 yarn pnp를 지원하지 않았기 때문에 yarn worksapce + pnp로 변경하는 시도를 했습니다. yarn workspace를 적용하고 pnp를 켰으며 이 과정에서 발생한 여러 가지 문제를 해결하여 결국 적용은 성공했습니다. node\_modules의 의존성이 모두 `.yarn/cache` 하위의 압축된 의존성으로 저장되고 pnp.js에서 이 내용을 참조할 수 있는 정보가 기록됩니다.
 
 
 
@@ -72,7 +72,7 @@ pnpm은 [**symbolic link**](https://pnpm.io/symlinked-node-modules-structure)를
 
 따라서 공식 문서에서 언급된 바와 같이 **hoisting 되어 flattern한 node\_modules에서 발생했던 유령 의존성 문제를 해결**할 수 있기 때문에 저희 팀에 맞는 방향이라 생각하여 적용했습니다.
 
-`A great bonus of this layout is that only packages that are really in the dependencies are accessible. With a flattened`` ``node_modules structure, all hoisted packages are accessible.`
+`A great bonus of this layout is that only packages that are really in the dependencies are accessible. With a flattened node_modules structure, all hoisted packages are accessible.`
 
 
 
