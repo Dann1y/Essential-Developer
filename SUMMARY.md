@@ -7,7 +7,7 @@
 * [Monorepo](frontend/monorepo/README.md)
   * [Monorepo 2년차, yarn workspace 도입기 (최종 적용 X)](frontend/monorepo/monorepo-experience.md)
   * [Monorepo, 패키지 매니저를 변경하며 해결한 문제들](frontend/monorepo/package-manager.md)
-* [Form의 개념, 내가 사용한 방법](frontend/form/README.md)
+* [Form의 개념, 사용한 경험](frontend/form/README.md)
   * [Web에서의 Form이란?](frontend/form/web-form.md)
   * [Form을 관리하고 최적화한 방법](frontend/form/form.md)
 * [SWR 시리즈](frontend/swr/README.md)
