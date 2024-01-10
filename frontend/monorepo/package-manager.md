@@ -10,8 +10,8 @@ description: 2024.01.07
 
 * Turborepo + yarn berry (nodeLinker: node\_modules)로 구성된 모노레포에 의존성 설치 시간이 오래 걸렸습니다. (1m 40s)
 * A workspace의 package.json에 작성되어 있는 의존성이 B workspace에서도 사용 가능한 현상이 있었습니다.
-* docker build를 하기 위해 workspace를 COPY 하는 과정이 하드 코딩되어 변경에 취약했습니다.
-* ci에 별도의 caching이 적용되어있지 않아 매번 새롭게 빌드하고 시간이 오래 걸리는 비효율적인 과정이 있었습니다.
+* docker build를 하기 위해 workspace를 COPY 하는 과정이 일일이 작성되어 변경에 취약했습니다.
+* ci에 별도의 캐싱이 적용되어있지 않아 매번 새롭게 빌드하고 시간이 오래 걸리는 비효율적인 과정이 있었습니다.
 
 
 
@@ -19,17 +19,17 @@ description: 2024.01.07
 
 ## 이전의 시도들
 
-사실 모노레포를 최적화하는 시도는 이번이 3번째입니다. 23년 초 트윕 대시보드 프로젝트를 initialize 할 때 최 적화된 모노레포와 함께 구성하고 싶어서 유령 의존성을 제거하고 ci 단계에서 install 시간을 단축시키고자 yarn pnp + docker layer caching을 적용하려고 했습니다.
+사실 모노레포를 최적화하는 시도는 이번이 3번째입니다. 23년 초 트윕 대시보드 프로젝트를 초기화할 때 최적화된 모노레포와 함께 구성하고 싶어서 유령 의존성을 제거하고 ci 단계에서 install 시간을 단축시키고자 yarn pnp + docker layer caching을 적용하려고 했습니다.
 
 그러나 **첫 번째** 시도는 실패했습니다. `nodeLinker: pnp` 를 설정하고 pnp를 사용하려고 했지만 turborepo에서 [pnp를 지원하지 않았습니다](https://github.com/vercel/turbo/issues/693).
 
 
 
-**두 번째**는 turborepo에서 yarn pnp를 지원하지 않았기 때문에 yarn worksapce + pnp로 변경하는 시도를 했습니다. yarn workspace를 적용하고 pnp를 켰으며 이 과정에서 발생한 여러 가지 문제를 해결하여 결국 적용은 성공했습니다. node\_modules의 의존성이 모두 `.yarn/cache` 하위의 압축된 의존성으로 저장되고 pnp.js에서 이 내용을 참조할 수 있는 정보가 기록됩니다.
+**두 번째**는 turborepo에서 yarn pnp를 지원하지 않았기 때문에 yarn worksapce + pnp로 변경하는 시도를 했습니다. yarn workspace를 적용하고 pnp를 켰으며 이 과정에서 발생한 여러 가지 문제를 해결하여 적용은 성공했습니다. node\_modules의 의존성이 `.yarn/cache` 하위의 압축된 의존성으로 저장되고 `pnp.js`에서 이 내용을 참조할 수 있는 정보가 기록됩니다.
 
 
 
-아쉽게도 두 번째 시도는 코드 레벨에서의 적용은 성공했지만 프로덕션에 적용하진 못했습니다.\
+아쉽게도 두 번째 시도는 코드 레벨에서의 적용은 성공했지만 실서버에 적용하진 못했습니다.\
 제가 두 번째 시도에 대한 글을 쓴 시점이 23년 중순이었는데 이 시기가 새로운 프로젝트 출시 전이었고, 무엇보다 모노레포 전반에 걸쳐 변경된 파일의 개수가 n만개 수준이었는데 이것이 안전한지 장담할 수 없었습니다. 이 때 **팀으로 일하는 것의 중요성**에 대해서 다시금 깨달았고, **지속 가능한 업무 방식**에 대해서 한층 더 이해한 경험이었습니다.
 
 
@@ -38,17 +38,17 @@ description: 2024.01.07
 
 ## 이번엔 어떻게?
 
-이전에 시도들에서 시간이 지난 사이에 ci가 기존 jenkins에서 github action으로 전환 되었고, 백엔드팀이 pnpm으로 적용한 사례를 공유했습니다.
+이전에 시도들에서 시간이 지난 사이에 ci가 기존 jenkins에서 GitHub action으로 전환 되었고, 백엔드팀이 pnpm으로 적용한 사례를 공유했습니다.
 
-기존의 비효율적인 프로세스를 그대로 둔다면 저 혼자라면 기껏해야 n분이겠지만 팀으로 일하는 조직에서는 **n \* 팀원 수** 만큼 시간이 늘어나게 됩니다. 이전 시도들에서 배운 교훈을 바탕으로 이번에는 좀 더 다른 방향으로 접근했습니다. 이전 시도에서는 모든 변경을 한번에 진행해서 위험성이 높았다면 이번에는 차례로 **적용 범위**를 나눴습니다.
+기존의 비효율적인 프로세스를 그대로 둔다면 저 혼자라면 기껏해야 n분이겠지만 팀으로 일하는 조직에서는 **n \* 팀원 수** 만큼 시간이 늘어나게 됩니다. 이전 시도들에서 배운 교훈을 바탕으로 이번에는 다른 방향으로 접근했습니다. 이전 시도에서는 모든 변경을 한번에 진행해서 위험성이 높았다면 이번에는 **적용 범위**를 나눴습니다.
 
-* **의존성 버전 업데이트**
-  * 모노레포를 init한지 2년 이상이 지났고 그 시간 동안 여러 패키지들이 새로운 버전을 출시했기에 버전을 맞출 필요가 있었습니다.
-* **패키지 매니저 변경**
-  * yarn pnp를 적용하여 zero-install를 활용하면 ci 단계에서 install 시간을 비약적으로 줄일 수 있지만 우리 팀이 처한 문제를 풀기에는 앞선 이유들로 인해 적합하지 않았습니다.
-  * 따라서 pnpm을 도입하여 유령 의존성 문제를 본질적으로 해결하고 install 시간을 줄일 수 있겠다고 생각했습니다.
-* **ci 단계별 caching 가능한 부분 차례로 접근**
-  * 기존에는 따로 caching 되어있는 단계가 없었는데 pnpm으로 유령 의존성 문제가 해결되면 docker base image를 생성한다던지, pnpm install caching을 적용한다던지 등등 여러 방법들이 있었습니다.
+* **의존성 버전 업데이트 (Yarn)**
+  * 모노레포를 초기화한지 2년 이상이 지났고 그 시간 동안 여러 의존성이 새로운 버전을 출시했기에 버전을 맞출 필요가 있었습니다.
+* **yarn -> pnpm으로 패키지 매니저 변경**
+  * yarn pnp를 적용하여 zero-install를 활용하면 ci 단계에서 설치 시간을 비약적으로 줄일 수 있지만 저희 팀이 처한 문제를 풀기에는 앞선 이유들로 인해 적합하지 않았습니다.
+  * 따라서 pnpm을 도입하여 본질적으로 유령 의존성 문제를 해결하고 설치 시간을 줄일 수 있겠다고 생각했습니다.
+* **ci 단계별 캐싱**
+  * 기존에는 따로 캐싱 되어있는 단계가 없었는데 pnpm으로 유령 의존성 문제가 해결되고 docker base image를 생성한다던지, pnpm install caching을 적용한다던지 등등 여러 방법들이 있었습니다.
 
 
 
@@ -86,18 +86,18 @@ pnpm은 [**symbolic link**](https://pnpm.io/symlinked-node-modules-structure)를
 
 
 
-## 3. ci 단계별 caching 가능한 부분 차례로 접근
+## 3. ci 단계별 캐싱
 
 ### 3-1. 문제 확인
 
-서비스 특성상 2가지의 github action이 존재했습니다.
+서비스 특성상 2가지의 GitHub action이 존재했습니다.
 
-* PR에서 build가 성공하는지 확인하는 build 결과 확인용 github action
-* 실제 ci/cd 파이프라인을 타는 배포용 github action
+* PR에서 build가 성공하는지 확인하는 build 결과 확인용 GitHub action
+* 실제 ci/cd 파이프라인을 타는 배포용 GitHub action
 
 
 
-pnpm을 최종 배포하기 전까지는 pnpm 코드가 파이프라인을 타면 안 됐고 여기선 github action workflow에서 의존성을 설치하고 빌드하기 때문에 build 결과 확인용 github action에 먼저 pnpm을 적용했습니다.
+pnpm을 최종 배포하기 전까지는 pnpm 코드가 파이프라인을 타면 안 됐고 여기선 GitHub action workflow에서 의존성을 설치하고 빌드하기 때문에 build 결과 확인용 GitHub action에 먼저 pnpm을 적용했습니다.
 
 action에서 install 시간이 줄어든 것을 확인하고 나머지 ci/cd 파이프라인도 별도의 dockerfile과 workflow를 구성하여 기존 시스템에는 영향이 없도록 테스트 환경에서 적용했습니다.
 
@@ -133,7 +133,7 @@ action에서 install 시간이 줄어든 것을 확인하고 나머지 ci/cd 파
 		${{ runner.os }}-pnpm-store-
 ```
 
-> 가장 핵심이 되는 내용인데요, 결국 github [action/cache](https://github.com/actions/cache)를 활용하여 pnpm-lock.yaml 파일이 변경되지 않았다면 (cache hitted!) 캐싱된 node\_modules를 사용하고 캐싱된 값이 없다면 의존성을 새로 설치합니다.
+> 가장 핵심이 되는 내용인데요, 결국 GitHub [action/cache](https://github.com/actions/cache)를 활용하여 pnpm-lock.yaml 파일이 변경되지 않았다면 (cache hitted!) 캐싱된 node\_modules를 사용하고 캐싱된 값이 없다면 의존성을 새로 설치합니다.
 
 이는 pnpm 뿐만 아니라 다른 패키지 매니저를 사용해도 action/cache 플러그인을 활용하여 동일하게 (npm이라면 package-lock.json를 hash) 사용 가능한 것으로 이해하고 있습니다.
 
@@ -162,7 +162,7 @@ build할 때는 input → build → output을 거치기 때문에 inputs, output
 
 > 로컬에서 개발할 때는 같은 내용을 캐싱하는 이점을 활용할 수 있지만, ci 단계에서 다른 머신으로 빌드할 때는 추가적인 조치가 필요합니다. 별도의 self hosted 머신을 사용한다면 모르겠지만, ci가 실행될 때마다 다른 머신에서 돌게 되고 캐싱된 값을 local file system에 저장하는 turbo는 매번 새로운 빌드를 수행하게 될 것 입니다.
 
-그래서 remote 환경에서 turbo caching의 이점을 살리려면 추가적인 조치가 필요합니다. [turbo remote caching](https://turbo.build/repo/docs/core-concepts/remote-caching) 기능을 활용하는 방법이 있습니다. 저희는 github action/cache를 활용해서 github 저장소에 저장하는 방법을 선택했습니다. 다음은 [공식문서](https://turbo.build/repo/docs/ci/github-actions)에 나와있는 핵심 코드입니다.
+그래서 remote 환경에서 turbo 캐싱의 이점을 살리려면 추가적인 조치가 필요합니다. [turbo remote caching](https://turbo.build/repo/docs/core-concepts/remote-caching) 기능을 활용하는 방법이 있습니다. 저희는 GitHub action/cache를 활용해서 GitHub 저장소에 저장하는 방법을 선택했습니다. 다음은 [공식문서](https://turbo.build/repo/docs/ci/github-actions)에 나와있는 핵심 코드입니다.
 
 ```yaml
 - name: Cache turbo build setup
@@ -300,20 +300,20 @@ turbo build 할 때 cache directory를 root로 빼주었습니다. 기본 값은
 
 **Action Docker layer caching**
 
-배포를 위한 빌드에 docker image build를 사용한다면 github action에서 설정할 수 있는 방법이 있습니다. [docker/build-push-action](https://docs.docker.com/build/cache/backends/gha/#using-dockerbuild-push-action) 플러그인을 이용하는 방법입니다.
+배포를 위한 빌드에 docker image build를 사용한다면 GitHub action에서 설정할 수 있는 방법이 있습니다. [docker/build-push-action](https://docs.docker.com/build/cache/backends/gha/#using-dockerbuild-push-action) 플러그인을 이용하는 방법입니다.
 
 ```yaml
 cache-from: type=gha
 cache-to: type=gha,mode=max
 ```
 
-이 플러그인은 BuildKit이라는 툴킷의 buildx 명령을 활용합니다. BuildKit에서 [github action에서 캐싱](https://github.com/moby/buildkit?tab=readme-ov-file#github-actions-cache-experimental)을 걸 수 있는 방법이 나와있지만[ 아직 실험적인 기능](https://docs.docker.com/build/ci/github-actions/cache/#github-cache)이라고 합니다. (22년도에도 실험적이라고 했는데 언제까지.. ㅠ)
+이 플러그인은 BuildKit이라는 툴킷의 buildx 명령을 활용합니다. BuildKit에서 [GitHub action에서 캐싱](https://github.com/moby/buildkit?tab=readme-ov-file#github-actions-cache-experimental)을 걸 수 있는 방법이 나와있지만[ 아직 실험적인 기능](https://docs.docker.com/build/ci/github-actions/cache/#github-cache)이라고 합니다. (22년도에도 실험적이라고 했는데 언제까지.. ㅠ)
 
 > 앞선 pnpm과 turbo가 하나의 artifact가 나오는 반면 docker는 layer 별 캐싱을 해서인지 여러개의 artifact가 생기고 사이즈도 모두 다릅니다. (이 방법이 최선일지에 대해서는 고민을 더 해봐야할 것 같습니다.)
 
 <figure><img src="../../.gitbook/assets/docker layer cache.png" alt=""><figcaption></figcaption></figure>
 
-실제 build 결과를 보면 layer별로 caching 된 부분은 CACHED라고 표시되며 적용된 것을 확인할 수 있습니다.
+실제 build 결과를 보면 layer별로 캐싱된 부분은 CACHED라고 표시되며 적용된 것을 확인할 수 있습니다.
 
 <figure><img src="../../.gitbook/assets/docker layer cache 2 (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -361,7 +361,7 @@ cache-to: type=gha,mode=max
 
 ## 마무리
 
-23년에 했던 경험을 바탕으로 기존 모노레포의 비효율을 개선하기 위해 패키지 매니저를 변경하고 ci에 캐싱을 적용하여 최적화를 진행했습니다. 그 결과 눈에 띄는 개선점이 있었고, 이 과정에서 monorepo 생태계, dockerize, github action ci 등 여러 방면에 걸쳐 지식이 한층 늘어난 것 같습니다.
+23년에 했던 경험을 바탕으로 기존 모노레포의 비효율을 개선하기 위해 패키지 매니저를 변경하고 ci에 캐싱을 적용하여 최적화를 진행했습니다. 그 결과 눈에 띄는 개선점이 있었고, 이 과정에서 monorepo 생태계, dockerize, GitHub action ci 등 여러 방면에 걸쳐 지식이 한층 늘어난 것 같습니다.
 
 개선 결과는 모노레포의 구성과 환경에 따라 달라질 수 있으며 `이걸 적용하면 반드시 이 정도의 개선이 있다`를 의미하지 않습니다.&#x20;
 
@@ -381,7 +381,7 @@ cache-to: type=gha,mode=max
   * [https://pnpm.io/symlinked-node-modules-structure](https://pnpm.io/symlinked-node-modules-structure)
 * vscode ts error
   * [https://stackoverflow.com/questions/55201424/how-to-get-vscode-to-show-typescript-errors-for-files-not-open-in-the-editor](https://stackoverflow.com/questions/55201424/how-to-get-vscode-to-show-typescript-errors-for-files-not-open-in-the-editor)
-* github action cache
+* GitHub action cache
   * [https://github.com/actions/cache](https://github.com/actions/cache)
 * turbo
   * [https://turbo.build/repo/docs/core-concepts/caching](https://turbo.build/repo/docs/core-concepts/caching)
