@@ -4,21 +4,19 @@ description: 2023.04.26.
 
 # useSWRMutation - Mutate 추상화하기
 
-useSWRMutation으로 Mutate를 추상화한 경험에 대해서 공유하겠습니다.
-
-
-
-
-
 ## 기존에 발생한 문제점
-
-Next.js에서 Data fetching을 하면서 GET 요청에 대해서는 useSWR로 추상화하여 코드 수를 줄이고 역할을 분리했습니다. 그러나 나머지 POST, DELETE, PUT 과 같은 mutate 요청에 대해서는 여전히 매번 긴 코드를 작성해야했습니다.
 
 <figure><img src="../../.gitbook/assets/image (35).png" alt=""><figcaption><p>mutate의 의미</p></figcaption></figure>
 
-[**OpenAPI generator가 적용**](https://docs.essential-dev.blog/tech/web/http/http-openapi-generator)되어있어 사용성에서 큰 문제는 없었지만 여러 mutate 요청을 하나의 컴포넌트에서 하다보면 코드가 길어질 수 밖에 없었습니다.
+Next.js에서 Data fetching을 하면서 GET 요청에 대해서는 useSWR로 추상화하여 코드 수를 줄이고 역할을 분리했습니다. 그러나 POST, DELETE, PUT과 같은 mutate 요청에 대해서는 여전히 매번 긴 코드를 작성해야했습니다.
 
-따라서 이러한 문제점을 찾기 위한 방법을 생각해보았습니다.
+[**OpenAPI generator가 적용**](https://docs.essential-dev.blog/tech/web/http/http-openapi-generator)되어 있어 사용성에서 큰 문제는 없었지만 여러 mutate 요청을 하나의 컴포넌트에서 하다 보면 코드가 길어질 수 밖에 없었습니다.
+
+따라서 이러한 문제점을 찾기 위한 방법을 생각해 보았습니다.
+
+
+
+
 
 
 
@@ -26,7 +24,7 @@ Next.js에서 Data fetching을 하면서 GET 요청에 대해서는 useSWR로 �
 
 {% embed url="https://swr.vercel.app/ko/docs/mutation#useswrmutation" %}
 
-**useSWRMutation**이 있다는 사실은 전부터 알고 있기는 했지만 나왔을 당시 팀에 적용하자고 의견을 냈을 때는 당장 필요하지 않아서 적용하지 않았었습니다. 하지만 더 좋은 방법인 것을 알았기에 먼저 적용 후 PR을 올려서 팀원 분들의 의견을 확인했습니다. [**(내가 한 행동의 근거)**](https://docs.essential-dev.blog/growthmoment/undefined/7-or-ep02#6.)&#x20;
+**useSWRMutation**이 있다는 사실은 전부터 알고 있기는 했지만 나왔을 당시 팀에 적용하자고 의견을 냈을 때는 당장 필요하지 않아서 적용하지 않았었습니다. 하지만 더 좋은 방법인 것을 알았기에 먼저 적용 후 PR을 올려서 팀원 분들의 의견을 확인했습니다.
 
 ```tsx
 import useSWRMutation from 'swr/mutation'
@@ -81,13 +79,14 @@ return되는 초기 data는 undefined이고 trigger를 실행함으로써 mutate
 
 
 
+
+
+
+
 ## 적용한 방법
 
-과거에 사용한 useSWR과 마찬가지로 useSWRMutation을 이용해서 custom hook을 생성하여 추상화했습니다.
-
+과거에 사용한 useSWR과 마찬가지로 useSWRMutation을 이용해서 custom hook을 생성하여 추상화했습니다.\
 예시로 블로그 글을 생성하는 POST 요청을 추상화하는 useMutateBlogCreate hook을 만들어보겠습니다.
-
-
 
 ### useMutateBlogCreate.ts
 
@@ -161,6 +160,10 @@ const onSubmit = async () => {
 * `useMutateSlotMachineCreate` hook을 통해 사용할 trigger와 isMutating을 가져옵니다.
   * isMutating은 request status가 (pending)일 때 Loading UI를 표시하는 곳에 사용하여 사용자에게 웹사이트가 멈추지 않고 통신중이라는 의미를 전달할 수 있습니다.
 * onSubmit이 발생할 때 trigger를 실행함으로써 POST 요청을 보내고 반환값인 `linkId`를 받아와서 이후 처리
+
+
+
+
 
 
 
